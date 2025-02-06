@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="literedsabo.png">
+	<!-- Created using the Spritesheet and XML generator -->
+	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
+	<SubTexture name="idlered0000" x="265" y="567" width="292" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="leftred0002" x="332" y="395" width="210" height="146" frameX="-211" frameY="-617" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="leftred0001" x="347" y="228" width="215" height="149" frameX="-211" frameY="-612" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="rightred0002" x="300" y="0" width="292" height="227" frameX="-154" frameY="-548" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="rightred0001" x="0" y="0" width="300" height="228" frameX="-146" frameY="-550" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="downred0002" x="0" y="228" width="347" height="167" frameX="-125" frameY="-612" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="downred0001" x="592" y="0" width="350" height="162" frameX="-119" frameY="-618" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idlered0004" x="557" y="567" width="291" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idlered0003" x="592" y="369" width="309" height="173" frameX="-126" frameY="-605" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idlered0002" x="0" y="395" width="332" height="172" frameX="-106" frameY="-615" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idlered0001" x="265" y="567" width="292" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="upred0002" x="592" y="162" width="266" height="207" frameX="-168" frameY="-603" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="upred0001" x="0" y="567" width="265" height="205" frameX="-172" frameY="-602" frameWidth="1920" frameHeight="1080"/>
+</TextureAtlas>

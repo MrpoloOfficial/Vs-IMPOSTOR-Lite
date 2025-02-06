@@ -36,9 +36,9 @@ class HealthIcon extends FlxSprite
 			{
 				isAnimatedIcon = true;
 				frames = Paths.getSparrowAtlas(name);
-				animation.addByPrefix('normal', 'normal', 7, true, isPlayer);
-				animation.addByPrefix('losing', 'lose', 7, true, isPlayer);
-				animation.addByPrefix('winning', 'win', 7, true, isPlayer);
+				animation.addByPrefix('normal', 'normal', 6, true, isPlayer);
+				animation.addByPrefix('losing', 'lose', 6, true, isPlayer);
+				animation.addByPrefix('winning', 'win', 6, true, isPlayer);
 				animation.play('normal');
 			}
 			else {

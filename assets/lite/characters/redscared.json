@@ -1,0 +1,86 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				20,
+				10
+			],
+			"anim": "singLEFT",
+			"fps": 12,
+			"name": "leftred",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-10
+			],
+			"anim": "singDOWN",
+			"fps": 12,
+			"name": "downred",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singUP",
+			"fps": 12,
+			"name": "upred",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				6,
+				0
+			],
+			"anim": "singRIGHT",
+			"fps": 12,
+			"name": "rightred",
+			"indices": []
+		},
+		{
+			"offsets": [
+				14,
+				0
+			],
+			"indices": [
+				2,
+				3,
+				4,
+				1,
+				0
+			],
+			"fps": 12,
+			"anim": "idle",
+			"loop": false,
+			"name": "idlered"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": true,
+	"image": "characters/literedsabo",
+	"position": [
+		710,
+		-250
+	],
+	"healthicon": "red",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		142,
+		142
+	],
+	"camera_position": [
+		-2700,
+		-450
+	],
+	"sing_duration": 4,
+	"scale": 2.3,
+	"_editor_isPlayer": false
+}

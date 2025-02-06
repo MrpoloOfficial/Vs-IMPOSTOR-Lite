@@ -33,7 +33,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" fps="" background="#FFFFFF" hardware="true" vsync="false" />
+	<window width="1200" height="900" fps="" background="#FFFFFF" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -147,9 +147,8 @@
 	<assets path='art/iconOG.png' rename='icon.png' if="linux" />
 	
 	<icon path="art/icon16.png" size='16'/>
-	<icon path="art/icon32.png" size='32'/>
-	<icon path="art/icon64.png" size='64'/>
-	<icon path="art/icon150.png" size='150'/>
-	<icon path="art/icon300.png" size='300'/>
+	<icon path="art/icon64.png" size='68'/>
+	<icon path="art/icon150.png" size='160'/>
+	<icon path="art/icon300.png" size='320'/>
 	<icon path="art/iconOG.png" />
 </project>

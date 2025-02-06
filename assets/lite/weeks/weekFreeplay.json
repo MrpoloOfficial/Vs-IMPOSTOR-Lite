@@ -1,8 +1,7 @@
 {
 	"songs": [
-		["idfk", "idfk", [255, 77, 116]],
-		["sauces cookus", "face", [255, 77, 116]],
-		["room code", "face", [255, 77, 116]]
+		["idontknow", "idk", [255, 77, 116], "idk"],
+		["crewcide", "dave", [255, 77, 116], "red"]
 	],
 
 	"storyName": "",

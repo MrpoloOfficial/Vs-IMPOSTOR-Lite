@@ -11,7 +11,6 @@ import haxe.Json;
 
 import backend.Song;
 import backend.Section;
-import states.stages.objects.TankmenBG;
 
 typedef CharacterFile = {
 	var animations:Array<AnimArray>;
@@ -398,7 +397,6 @@ class Character extends FlxSprite
 					animationNotes.push(songNotes);
 				}
 			}
-			TankmenBG.animationNotes = animationNotes;
 			animationNotes.sort(sortAnims);
 		}
 		catch(e:Dynamic) {}

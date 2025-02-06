@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dave.png">
+	<!-- Created using the Spritesheet and XML generator -->
+	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
+	<SubTexture name="lose0000" x="96" y="106" width="88" height="101" frameX="-35" frameY="-20" frameWidth="150" frameHeight="150"/>
+	<SubTexture name="lose0001" x="184" y="106" width="87" height="101" frameX="-35" frameY="-20" frameWidth="150" frameHeight="150"/>
+	<SubTexture name="normal0000" x="0" y="106" width="96" height="102" frameX="-35" frameY="-17" frameWidth="150" frameHeight="150"/>
+	<SubTexture name="normal0001" x="196" y="0" width="96" height="102" frameX="-34" frameY="-18" frameWidth="150" frameHeight="150"/>
+	<SubTexture name="win0000" x="98" y="0" width="98" height="105" frameX="-33" frameY="-18" frameWidth="150" frameHeight="150"/>
+	<SubTexture name="win0001" x="0" y="0" width="98" height="106" frameX="-33" frameY="-18" frameWidth="150" frameHeight="150"/>
+</TextureAtlas>

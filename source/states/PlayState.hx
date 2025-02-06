@@ -1813,9 +1813,12 @@ class PlayState extends MusicBeatState
 
 		timeBar.leftBar.color = FlxColor.fromRGB(137, 143, 240);
 		
-		if(!SONG.notes[curSection].mustHitSection) scoreTxt.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
-		else scoreTxt.color = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
-		
+		//if(unspawnNotes[0] != null)
+		//{
+			if(!SONG.notes[curSection].mustHitSection) scoreTxt.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+			else scoreTxt.color = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
+		//}
+
 		curHealth = FlxMath.lerp(curHealth, health, 0.2 / (ClientPrefs.data.framerate / 60));
 
 		setOnScripts('cameraX', camFollow.x);

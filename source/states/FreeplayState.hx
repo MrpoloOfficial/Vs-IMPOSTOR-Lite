@@ -18,6 +18,7 @@ class FreeplayState extends MusicBeatState
 
 	var selector:FlxText;
 	private static var curSelected:Int = 0;
+	private static var prevCurSelected:Int = 0;
 	var lerpSelected:Float = 0;
 	var curDifficulty:Int = -1;
 	private static var lastDifficultyName:String = Difficulty.getDefault();
@@ -46,6 +47,10 @@ class FreeplayState extends MusicBeatState
 	var bottomString:String;
 	var bottomText:FlxText;
 	var bottomBG:FlxSprite;
+
+	var portrait:FlxSprite;
+	var prevPortrait:String = "";
+	var curPortrait:String = "";
 
 	var player:MusicPlayer;
 
@@ -84,24 +89,36 @@ class FreeplayState extends MusicBeatState
 				{
 					colors = [146, 113, 253];
 				}
-				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
+				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]), song[3]);
 			}
 		}
 		Mods.loadTopMod();
 
 		bg = new FlxSprite().loadGraphic(Paths.image('sketch'));
-		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.antialiasing = false;
 		add(bg);
 		bg.screenCenter();
+
+		for (i in 0...songs.length) Paths.image('portraits/${songs[i].portrait}');
+
+		portrait = new FlxSprite().loadGraphic(Paths.image('portraits/${songs[curSelected].portrait}'));
+		portrait.scale.set(0.4, 0.4);
+		portrait.updateHitbox();
+		portrait.x = FlxG.width - portrait.width;
+		portrait.y = FlxG.height - portrait.height;
+		portrait.antialiasing = false;
+		add(portrait);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(90, 320, songs[i].songName, true);
+			var songText:Alphabet = new Alphabet(50, 450, songs[i].songName, true);
+			songText.distancePerItem.x = 0;
 			songText.targetY = i;
 			grpSongs.add(songText);
+			songText.y -= songText.height / 2;
 
 			songText.scaleX = Math.min(1, 980 / songText.width);
 			songText.snapToPosition();
@@ -181,9 +198,9 @@ class FreeplayState extends MusicBeatState
 		super.closeSubState();
 	}
 
-	public function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int)
+	public function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int, portrait:String)
 	{
-		songs.push(new SongMetadata(songName, weekNum, songCharacter, color));
+		songs.push(new SongMetadata(songName, weekNum, songCharacter, color, portrait));
 	}
 
 	function weekIsLocked(name:String):Bool {
@@ -421,6 +438,8 @@ class FreeplayState extends MusicBeatState
 
 		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
+		prevCurSelected = curSelected;
+		prevPortrait = songs[curSelected].portrait;
 		var lastList:Array<String> = Difficulty.list;
 		curSelected += change;
 
@@ -428,6 +447,8 @@ class FreeplayState extends MusicBeatState
 			curSelected = songs.length - 1;
 		if (curSelected >= songs.length)
 			curSelected = 0;
+
+		curPortrait = songs[curSelected].portrait;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, 1);
@@ -469,7 +490,18 @@ class FreeplayState extends MusicBeatState
 		Mods.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
 		Difficulty.loadFromWeek();
+
+		if(curPortrait != prevPortrait) {
+			if(tweenPortrait != null) tweenPortrait.cancel();
+			portrait.loadGraphic(Paths.image('portraits/${songs[curSelected].portrait}'));
+			portrait.scale.set(0.4, 0.4);
+			portrait.updateHitbox();
+			portrait.y = FlxG.height - portrait.height;
+			portrait.x = FlxG.width;
+			tweenPortrait = FlxTween.tween(portrait, {x: FlxG.width - portrait.width}, 0.6, {ease: FlxEase.smootherStepOut});
+		}
 	}
+	var tweenPortrait:FlxTween;
 
 	private function positionHighscore() {
 		scoreText.x = FlxG.width - scoreText.width - 6;
@@ -478,7 +510,7 @@ class FreeplayState extends MusicBeatState
 		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 	}
 
-	var _drawDistance:Int = 4;
+	var _drawDistance:Int = 5;
 	var _lastVisibles:Array<Int> = [];
 	public function updateTexts(elapsed:Float = 0.0)
 	{
@@ -523,8 +555,9 @@ class SongMetadata
 	public var color:Int = -7179779;
 	public var folder:String = "";
 	public var lastDifficulty:String = null;
+	public var portrait:String = "";
 
-	public function new(song:String, week:Int, songCharacter:String, color:Int)
+	public function new(song:String, week:Int, songCharacter:String, color:Int, portrait:String)
 	{
 		this.songName = song;
 		this.week = week;
@@ -532,5 +565,6 @@ class SongMetadata
 		this.color = color;
 		this.folder = Mods.currentModDirectory;
 		if(this.folder == null) this.folder = '';
+		this.portrait = portrait;
 	}
 }

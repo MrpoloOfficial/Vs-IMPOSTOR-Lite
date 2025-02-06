@@ -1,8 +1,8 @@
 {
 	"songs": [
-		["sussus moongus", "redImp", [247, 149, 149]],
-		["sabotage", "redImp", [247, 149, 149]],
-		["meltdown", "redImpScared", [247, 149, 149]]
+		["sussus moongus", "red", [247, 149, 149], "red"],
+		["sabotage", "red", [247, 149, 149], "red"],
+		["meltdown", "redM", [247, 149, 149], "red_scared"]
 	],
 
 	"storyName": "",

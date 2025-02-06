@@ -7,6 +7,7 @@ import flixel.addons.transition.FlxTransitionableState;
 class ScreenSizeState extends MusicBeatState
 {
     public static var curSelectedSize:Int = 0;
+    public static var prevCurSelectedSize:Int = 0;
 
     public static var selectedScreenSize:String = "";
 
@@ -28,8 +29,14 @@ class ScreenSizeState extends MusicBeatState
         FlxTransitionableState.skipNextTransOut = true;
         Lib.application.window.resizable = false;
 
+		var bg:FlxSprite = new FlxSprite();
+		bg.antialiasing = false;
+		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
+		bg.scrollFactor.set(0, 0);
+		add(bg);
+
         choose = new FlxText(0, 75, FlxG.width, "Choose screen resolution", 60);
-        choose.setFormat(Paths.font("vcr.ttf"), 60, FlxColor.WHITE, CENTER);
+        choose.setFormat(Paths.font("vcr.ttf"), 60, FlxColor.BLACK, CENTER);
         choose.alpha = 0.0001;
         add(choose);
 
@@ -41,7 +48,7 @@ class ScreenSizeState extends MusicBeatState
         for(i in 0...screenSizes.length) {
             var txt:FlxText = new FlxText(0, 300, 0, '${screenSizes[i][0]}x${screenSizes[i][1]}', 28);
             txt.fieldWidth = txt.width;
-            txt.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.WHITE, CENTER);
+            txt.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.BLACK, CENTER);
             txt.alpha = 0.00001;
             txt.screenCenter(X);
             txt.ID = i;
@@ -74,7 +81,11 @@ class ScreenSizeState extends MusicBeatState
         {
             sizeGrp.forEach(function(spr:FlxSprite) {
                 if(FlxG.mouse.overlaps(spr)) {
+                    prevCurSelectedSize = curSelectedSize;
                     curSelectedSize = spr.ID;
+                    if(prevCurSelectedSize != curSelectedSize) {
+                        FlxG.sound.play(Paths.sound('scrollMenu'));
+                    }
                     if(FlxG.mouse.justPressed) {
                         selectedSize();
                     }
@@ -104,7 +115,6 @@ class ScreenSizeState extends MusicBeatState
             {
                 selectedSomethin = true;
                 FlxG.mouse.visible = false;
-                FlxG.sound.play(Paths.sound('confirmMenu'));
                 selectedSize();
             }
         }
@@ -114,6 +124,7 @@ class ScreenSizeState extends MusicBeatState
 
     function selectedSize()
     {
+        FlxG.sound.play(Paths.sound('confirmMenu'));
         FlxTween.tween(choose, {alpha: 0.00001}, 0.3);
         FlxFlicker.flicker(sizeGrp.members[curSelectedSize], 1, 0.06, false, false, function(flick:FlxFlicker)
         {
@@ -157,7 +168,7 @@ class ScreenSizeState extends MusicBeatState
     var windowTwn:FlxTween;
     function resizeScreenC() // i love you mario madness v2
     {
-        FlxG.updateFramerate = 30;
+        FlxG.updateFramerate = 40;
 
         windowRes = FlxPoint.get(Lib.application.window.width, Lib.application.window.height);
         windowPos = CoolUtil.getCenterWindowPoint();

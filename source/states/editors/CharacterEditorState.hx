@@ -1042,7 +1042,7 @@ class CharacterEditorState extends MusicBeatState
 		}
 	}
 
-	final assetFolder = 'week1';  //load from assets/week1/
+	final assetFolder = '';  //load from assets/week1/
 	inline function loadBG()
 	{
 		var lastLoaded = Paths.currentLevel;
@@ -1051,13 +1051,10 @@ class CharacterEditorState extends MusicBeatState
 		/////////////
 		// bg data //
 		/////////////
-		var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
+		var bg:BGSprite = new BGSprite('stagefront', -1460, -1200, 1, 1);
+		bg.scale.set(2.2, 2.2);
+		bg.updateHitbox();
 		add(bg);
-
-		var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 0.9, 0.9);
-		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-		stageFront.updateHitbox();
-		add(stageFront);
 
 		dadPosition.set(100, 100);
 		bfPosition.set(770, 100);

@@ -41,8 +41,11 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['Choma',		'choma',		'Description here',					 '',		'7470ff'],
-			['bpforest',	'bpforest',		'Description here',					 '',		'78ffa1']
+			['Upqgg',				'upqgg',			'Description 1 here',			'',		'FFFFFF'],
+			['GTM',					'gtm',				'Description 2 here',			'',		'FFFFFF'],
+			['Captain Lite',		'CaptainLite',		'Description 3 here',			'',		'FFFFFF'],
+			['Just A Guy',			'JustAGuy',			'Description 4 here',			'',		'FFFFFF'],
+			['Mr polo',				'Mrpolo',			'Description 5 here',			'',		'FFFFFF']
 		];
 		
 		for(i in defaultList) {
@@ -56,6 +59,7 @@ class CreditsState extends MusicBeatState
 			optionText.loadGraphic(Paths.image('credits/' + creditsStuff[i][1]));
 			optionText.x += ((optionText.width) * i);
 			optionText.targetX = i;
+			optionText.antialiasing = ClientPrefs.data.antialiasing;
 			grpOptions.add(optionText);
 
 			if(isSelectable) {
@@ -70,13 +74,13 @@ class CreditsState extends MusicBeatState
 		}
 
 		leftArrow = new FlxSprite(20, 0);
-		leftArrow.antialiasing = ClientPrefs.data.antialiasing;
+		leftArrow.antialiasing = false;
 		leftArrow.loadGraphic(Paths.image('arrowButton'));
 		leftArrow.color = FlxColor.WHITE;
 		leftArrow.screenCenter(Y);
 
 		rightArrow = new FlxSprite();
-		rightArrow.antialiasing = ClientPrefs.data.antialiasing;
+		rightArrow.antialiasing = false;
 		rightArrow.loadGraphic(Paths.image('arrowButton'));
 		rightArrow.color = FlxColor.WHITE;
 		rightArrow.screenCenter(Y);
@@ -93,7 +97,7 @@ class CreditsState extends MusicBeatState
 		descBox.alpha = 0.6;
 		add(descBox);
 
-		descText = new FlxText(50, FlxG.height + offsetThing - 25, 1180, "", 32);
+		descText = new FlxText(50, FlxG.height + offsetThing - 25, 1100, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER/*, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK*/);
 		descText.scrollFactor.set();
 		//descText.borderSize = 2.4;

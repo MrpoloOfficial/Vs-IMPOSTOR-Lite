@@ -52,11 +52,11 @@ class TitleState extends MusicBeatState
 		titleStuff.add(enter);
 
 		logo = new FlxSprite(0, 125).loadGraphic(Paths.image('title/logo'));
-		logo.offset.x = logo.offset.x / 2;
-		logo.offset.y = logo.offset.y / 2;
+		logo.scale.set(0.5, 0.5);
+		logo.updateHitbox();
+		logo.centerOffsets();
 		logo.x = FlxG.width - logo.width;
 		logo.antialiasing = false;
-		logo.scale.set(1, 1);
 		titleStuff.add(logo);
 
 		super.create();
@@ -69,7 +69,7 @@ class TitleState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
-		var mult:Float = FlxMath.lerp(1, logo.scale.x, Math.exp(-elapsed * 9 * 1));
+		var mult:Float = FlxMath.lerp(0.5, logo.scale.x, Math.exp(-elapsed * 9 * 1));
 		logo.scale.set(mult, mult);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
@@ -79,7 +79,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 			for(item in titleStuff.members)
-			FlxTween.tween(item, {y: item.y + 1000}, 1.2, {ease: FlxEase.smootherStepInOut, startDelay: 0.02});
+			FlxTween.tween(item, {y: item.y + 1000}, 1.5, {ease: FlxEase.smootherStepInOut, startDelay: 0.03});
 			new FlxTimer().start(1.3, function(tmr:FlxTimer)
 			{
 				FlxG.switchState(() -> new MainMenuState());
@@ -91,7 +91,7 @@ class TitleState extends MusicBeatState
 
 	override function beatHit()
 	{
-		logo.scale.set(1.05, 1.05);
+		logo.scale.set(0.55, 0.55);
 		logo.updateHitbox();
 
 		super.beatHit();
