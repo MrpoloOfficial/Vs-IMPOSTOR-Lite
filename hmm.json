@@ -45,8 +45,7 @@
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/Oren-LuckyJackpots/SScript-For-Psych.git",
-      "version": "21.0.0"
+      "url": "https://github.com/Oren-LuckyJackpots/SScript-For-Psych.git 21.0.0"
     },
     {
       "name": "hxcpp-debug-server",
@@ -70,7 +69,7 @@
       "type": "git",
       "dir": null,
       "ref": "dev",
-      "url": "https://github.com/ShadowMario/flxanimate"
+      "url": "https://github.com/Dot-Stuff/flxanimate/"
     },
     {
       "name": "linc_luajit",
