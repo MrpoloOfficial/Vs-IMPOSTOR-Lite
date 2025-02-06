@@ -2,7 +2,6 @@
 
 name: Build
 
-
 # Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -25,7 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
+      - uses: actions/upload-artifact@v4.6.0
+      
       - uses: krdlab/setup-haxe@master
         with:
           haxe-version: latest
