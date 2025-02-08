@@ -45,7 +45,7 @@
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/NotMrPolo-real/SScript-polo"
+      "url": "https://github.com/SScript-Guy/SScript-new"
     },
     {
       "name": "hxcpp-debug-server",
@@ -64,10 +64,8 @@
     },
     {
       "name": "flxanimate",
-      "type": "git",
-      "dir": null,
-      "ref": "dev",
-      "url": "https://github.com/ShadowMario/flxanimate"
+      "type": "haxelib",
+      "version": null
     },
     {
       "name": "linc_luajit",
