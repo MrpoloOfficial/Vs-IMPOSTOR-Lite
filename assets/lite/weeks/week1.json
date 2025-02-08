@@ -1,13 +1,13 @@
 {
 	"songs": [
-		["sussus moongus", "red", [247, 149, 149], "red"],
-		["sabotage", "red", [247, 149, 149], "red"],
-		["meltdown", "redM", [247, 149, 149], "red_scared"]
+		["sussus moongus", "red", [255, 142, 142], "red"],
+		["sabotage", "red", [255, 142, 142], "red"],
+		["meltdown", "redM", [255, 142, 142], "red_scared"]
 	],
 
-	"storyName": "",
+	"storyName": "an impostor, among us...",
 	"weekBefore": "",
-	"weekName": "",
+	"weekName": "Week 1",
 	"startUnlocked": true,
 
 	"hideStoryMode": false,

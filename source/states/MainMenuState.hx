@@ -41,19 +41,35 @@ class MainMenuState extends MusicBeatState
 		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 		add(bg);
 
-		var char:FlxSprite = new FlxSprite().loadGraphic(Paths.image('mainmenu/bg'));
-		char.antialiasing = false;
-		char.updateHitbox();
-		char.screenCenter();
-		char.x += 200;
-		add(char);
+		var red:FlxSprite = new FlxSprite();
+		red.frames = Paths.getSparrowAtlas('mainmenu/redmenu');
+		red.animation.addByPrefix('idlered', 'idle', 12);
+		red.animation.play('idlered');
+		red.antialiasing = false;
+		red.scale.set(1.5, 1.5);
+		red.updateHitbox();
+		red.x = FlxG.width - red.width + 150;
+		red.y = FlxG.height - red.height + 175;
+		add(red);
+
+		var green:FlxSprite = new FlxSprite();
+		green.frames = Paths.getSparrowAtlas('mainmenu/greenmenu');
+		green.animation.addByPrefix('idlegreen', 'idle', 12);
+		green.animation.play('idlegreen');
+		green.antialiasing = false;
+		green.scale.set(1.5, 1.5);
+		green.updateHitbox();
+		green.flipX = true;
+		green.x = -150;
+		green.y = FlxG.height - green.height + 175;
+		add(green);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(50, 350 + (i * 125));
+			var menuItem:FlxSprite = new FlxSprite(0, 350 + (i * 125));
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu');
 			menuItem.animation.addByPrefix('idle', optionShit[i], 24);
 			menuItem.animation.addByPrefix('selected', "sel_" + optionShit[i], 24);
@@ -62,14 +78,16 @@ class MainMenuState extends MusicBeatState
 			menuItem.scale.set(0.7, 0.7);
 			menuItems.add(menuItem);
 			menuItem.updateHitbox();
+			menuItem.screenCenter(X);
 			menuItem.alpha = 0.5;
 		}
 		menuItems.members[curSelected].alpha = 1;
 
-		var logo:FlxSprite = new FlxSprite(50, 50).loadGraphic(Paths.image('title/logo'));
+		var logo:FlxSprite = new FlxSprite(0, 25).loadGraphic(Paths.image('title/logo'));
 		logo.antialiasing = false;
-		logo.scale.set(0.35, 0.35);
+		logo.scale.set(0.4, 0.4);
 		logo.updateHitbox();
+		logo.screenCenter(X);
 		add(logo);
 
 		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Lite Funkin' v1.0", 12);
@@ -125,7 +143,7 @@ class MainMenuState extends MusicBeatState
 						case 'freeplay':
 							FlxG.switchState(() -> new FreeplayState());
 						case 'credits':
-							FlxG.switchState(() -> new CreditsState());
+							FlxG.switchState(() -> new SelectCreditsState());
 						case 'options':
 							FlxG.switchState(() -> new OptionsState());
 							OptionsState.onPlayState = false;
@@ -163,6 +181,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.members[curSelected].animation.play('idle');
 		menuItems.members[curSelected].alpha = 0.5;
 		menuItems.members[curSelected].updateHitbox();
+		menuItems.members[curSelected].screenCenter(X);
 
 		curSelected += huh;
 		if (curSelected >= menuItems.length)
@@ -173,5 +192,6 @@ class MainMenuState extends MusicBeatState
 		menuItems.members[curSelected].animation.play('selected');
 		menuItems.members[curSelected].alpha = 1;
 		menuItems.members[curSelected].centerOffsets();
+		menuItems.members[curSelected].screenCenter(X);
 	}
 }

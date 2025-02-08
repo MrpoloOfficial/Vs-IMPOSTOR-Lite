@@ -3,7 +3,6 @@ import flixel.addons.ui.FlxUIState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.typeLimit.NextState;
 import backend.PsychCamera;
-import states.ScreenSizeState;
 class MusicBeatState extends FlxUIState
 {
 	private var curSection:Int = 0;

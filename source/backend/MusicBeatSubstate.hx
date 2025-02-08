@@ -1,7 +1,6 @@
 package backend;
 
 import flixel.FlxSubState;
-import states.ScreenSizeState;
 
 class MusicBeatSubstate extends FlxSubState
 {

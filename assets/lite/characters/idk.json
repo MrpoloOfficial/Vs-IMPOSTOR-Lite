@@ -2,82 +2,72 @@
 	"animations": [
 		{
 			"offsets": [
-				-2,
-				0
+				18,
+				3
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "idkleft"
+		},
+		{
+			"offsets": [
+				10,
+				8
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "idkdown"
+		},
+		{
+			"offsets": [
+				10,
+				6
 			],
 			"loop": false,
 			"fps": 12,
 			"anim": "singUP",
 			"indices": [],
-			"name": "daveup"
+			"name": "idkup"
 		},
 		{
 			"offsets": [
-				-14,
-				14
+				-9,
+				-3
 			],
 			"loop": false,
 			"fps": 12,
 			"anim": "singRIGHT",
 			"indices": [],
-			"name": "daveright"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
-			"anim": "idle",
-			"fps": 12,
-			"name": "daveidle",
-			"indices": [
-				2,
-				3,
-				4,
-				1,
-				0
-			]
+			"name": "idkright"
 		},
 		{
 			"offsets": [
 				0,
-				-2
-			],
-			"indices": [
-				2,
-				1,
 				0
-			],
-			"fps": 12,
-			"anim": "singDOWN",
-			"loop": false,
-			"name": "davedown"
-		},
-		{
-			"offsets": [
-				11,
-				-5
 			],
 			"indices": [],
-			"fps": 12,
-			"anim": "singLEFT",
-			"loop": false,
-			"name": "daveleft"
+			"fps": 2,
+			"anim": "idle",
+			"loop": true,
+			"name": "idkidle"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": true,
-	"image": "characters/litedave",
+	"image": "characters/idklite",
 	"position": [
 		710,
 		-250
 	],
-	"healthicon": "dave",
+	"healthicon": "idk",
 	"flip_x": false,
 	"healthbar_colors": [
-		146,
-		143,
+		255,
+		195,
 		255
 	],
 	"camera_position": [

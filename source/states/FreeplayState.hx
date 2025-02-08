@@ -114,11 +114,10 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(50, 450, songs[i].songName, true);
+			var songText:Alphabet = new Alphabet(50, 400, songs[i].songName, true);
 			songText.distancePerItem.x = 0;
 			songText.targetY = i;
 			grpSongs.add(songText);
-			songText.y -= songText.height / 2;
 
 			songText.scaleX = Math.min(1, 980 / songText.width);
 			songText.snapToPosition();

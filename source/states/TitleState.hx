@@ -55,7 +55,7 @@ class TitleState extends MusicBeatState
 		logo.scale.set(0.5, 0.5);
 		logo.updateHitbox();
 		logo.centerOffsets();
-		logo.x = FlxG.width - logo.width;
+		logo.x = FlxG.width - logo.width - 25;
 		logo.antialiasing = false;
 		titleStuff.add(logo);
 

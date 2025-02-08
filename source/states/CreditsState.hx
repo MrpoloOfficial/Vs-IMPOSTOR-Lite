@@ -20,6 +20,11 @@ class CreditsState extends MusicBeatState
 	var rightArrow:FlxSprite;
 
 	var offsetThing:Float = -75;
+
+	public static var teamName:String = "";
+
+	public static var defaultList:Array<Array<String>> = [];
+
 	override function create()
 	{
 		#if DISCORD_ALLOWED
@@ -39,14 +44,6 @@ class CreditsState extends MusicBeatState
 		#if MODS_ALLOWED
 		for (mod in Mods.parseList().enabled) pushModCreditsToList(mod);
 		#end
-
-		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['Upqgg',				'upqgg',			'Description 1 here',			'',		'FFFFFF'],
-			['GTM',					'gtm',				'Description 2 here',			'',		'FFFFFF'],
-			['Captain Lite',		'CaptainLite',		'Description 3 here',			'',		'FFFFFF'],
-			['Just A Guy',			'JustAGuy',			'Description 4 here',			'',		'FFFFFF'],
-			['Mr polo',				'Mrpolo',			'Description 5 here',			'',		'FFFFFF']
-		];
 		
 		for(i in defaultList) {
 			creditsStuff.push(i);
@@ -56,16 +53,16 @@ class CreditsState extends MusicBeatState
 		{
 			var isSelectable:Bool = !unselectableCheck(i);
 			var optionText:MenuItem = new MenuItem(0, 0);
-			optionText.loadGraphic(Paths.image('credits/' + creditsStuff[i][1]));
+			optionText.loadGraphic(Paths.image('credits/${teamName}/' + creditsStuff[i][0]));
 			optionText.x += ((optionText.width) * i);
 			optionText.targetX = i;
 			optionText.antialiasing = ClientPrefs.data.antialiasing;
 			grpOptions.add(optionText);
 
 			if(isSelectable) {
-				if(creditsStuff[i][5] != null)
+				if(creditsStuff[i][4] != null)
 				{
-					Mods.currentModDirectory = creditsStuff[i][5];
+					Mods.currentModDirectory = creditsStuff[i][4];
 				}
 				Mods.currentModDirectory = '';
 
@@ -104,7 +101,12 @@ class CreditsState extends MusicBeatState
 		descBox.sprTracker = descText;
 		add(descText);
 
-		bg.color = CoolUtil.colorFromString(creditsStuff[curSelected][4]);
+		var socialCheck:FlxText = new FlxText(0, FlxG.height - 24, 0, "Press ACCEPT to move to social media!", 12);
+		socialCheck.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		socialCheck.screenCenter(X);
+		add(socialCheck);
+
+		bg.color = CoolUtil.colorFromString(creditsStuff[curSelected][3]);
 		intendedColor = bg.color;
 		changeSelection();
 		super.create();
@@ -163,8 +165,8 @@ class CreditsState extends MusicBeatState
 				}
 			}
 
-			if(controls.ACCEPT && (creditsStuff[curSelected][3] == null || creditsStuff[curSelected][3].length > 4)) {
-				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
+			if(controls.ACCEPT && (creditsStuff[curSelected][2] == null || creditsStuff[curSelected][2].length > 4)) {
+				CoolUtil.browserLoad(creditsStuff[curSelected][2]);
 			}
 			if (controls.BACK)
 			{
@@ -172,7 +174,7 @@ class CreditsState extends MusicBeatState
 					colorTween.cancel();
 				}
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				FlxG.switchState(() -> new MainMenuState());
+				FlxG.switchState(() -> new SelectCreditsState());
 				quitting = true;
 			}
 		}
@@ -191,7 +193,7 @@ class CreditsState extends MusicBeatState
 				curSelected = 0;
 		} while(unselectableCheck(curSelected));
 
-		var newColor:FlxColor = CoolUtil.colorFromString(creditsStuff[curSelected][4]);
+		var newColor:FlxColor = CoolUtil.colorFromString(creditsStuff[curSelected][3]);
 		//trace('The BG color is: $newColor');
 		if(newColor != intendedColor) {
 			if(colorTween != null) {
@@ -212,7 +214,7 @@ class CreditsState extends MusicBeatState
 			bullShit++;
 		}
 
-		descText.text = creditsStuff[curSelected][2];
+		descText.text = creditsStuff[curSelected][1];
 		descText.y = FlxG.height - descText.height + offsetThing - 60;
 
 		if(moveTween != null) moveTween.cancel();

@@ -23,6 +23,7 @@ import haxe.Json;
 
 import cutscenes.CutsceneHandler;
 import cutscenes.DialogueBoxPsych;
+import cutscenes.DialogueLiteBox;
 
 import states.StoryMenuState;
 import states.FreeplayState;
@@ -208,6 +209,8 @@ class PlayState extends MusicBeatState
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
+	public var camDialogue:FlxCamera;
+	public var camCountdown:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
 	public var songScore:Int = 0;
@@ -301,18 +304,24 @@ class PlayState extends MusicBeatState
 		camGame = initPsychCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
+		camCountdown = new FlxCamera();
+		camDialogue = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
+		camCountdown.bgColor.alpha = 0;
+		camDialogue.bgColor.alpha = 0;
 
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camOther, false);
+		FlxG.cameras.add(camDialogue, false);
+		FlxG.cameras.add(camCountdown, false);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
 		persistentUpdate = true;
 		persistentDraw = true;
 
 		if (SONG == null)
-			SONG = Song.loadFromJson('tutorial');
+			SONG = Song.loadFromJson('test');
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.bpm = SONG.bpm;
@@ -605,7 +614,12 @@ class PlayState extends MusicBeatState
 			}
 		#end
 
-		startCallback();
+		if(isStoryMode && !seenCutscene && Paths.txt(songName + '/dialogue') != null) {
+			startLiteDialogue();
+			seenCutscene = true;
+		} else startCallback();
+
+		//startCallback();
 		RecalculateRating();
 
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
@@ -875,6 +889,28 @@ class PlayState extends MusicBeatState
 			startCountdown();
 	}
 
+	var liteDialg:DialogueLiteBox = null;
+	public function startLiteDialogue()
+	{
+		inCutscene = true;
+		var file:String = Paths.txt(songName + '/dialogue');
+		#if MODS_ALLOWED
+		if (!FileSystem.exists(file))
+		#else
+		if (!OpenFlAssets.exists(file))
+		#end
+		{
+			startCountdown();
+			return;
+		}
+
+		liteDialg = new DialogueLiteBox(CoolUtil.coolTextFile(file));
+		liteDialg.cameras = [camDialogue];
+		liteDialg.scrollFactor.set();
+		liteDialg.finishThing = startCountdown;
+		add(liteDialg);
+	}
+
 	var dialogueCount:Int = 0;
 	public var psychDialogue:DialogueBoxPsych;
 	//You don't have to add a song, just saying. You can just do "startDialogue(DialogueBoxPsych.parseDialogue(Paths.json(songName + '/dialogue')))" and it should load dialogue.json
@@ -1039,7 +1075,7 @@ class PlayState extends MusicBeatState
 	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
 	{
 		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ingame/' + image));
-		spr.cameras = [camHUD];
+		spr.cameras = [camCountdown];
 		spr.scrollFactor.set();
 		spr.updateHitbox();
 
@@ -1624,6 +1660,9 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		if (generatedMusic && !endingSong && !isCameraOnForcedPos)
+			moveCameraSection();
+
 		if(!inCutscene && !paused && !freezeCamera) {
 			FlxG.camera.followLerp = 2.4 * cameraSpeed * playbackRate;
 			if(!startingSong && !endingSong && boyfriend.getAnimationName().startsWith('idle')) {

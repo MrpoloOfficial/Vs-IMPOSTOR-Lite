@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="idk.png">
+	<!-- Created using the Spritesheet and XML generator -->
+	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
+	<SubTexture name="idkright0002" x="275" y="0" width="315" height="253" frameX="-252" frameY="-500" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkright0001" x="274" y="324" width="281" height="218" frameX="-251" frameY="-534" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkup0002" x="856" y="0" width="246" height="303" frameX="-201" frameY="-447" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkup0001" x="0" y="0" width="275" height="324" frameX="-176" frameY="-425" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkdown0002" x="856" y="303" width="158" height="158" frameX="-220" frameY="-602" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkdown0001" x="856" y="461" width="176" height="132" frameX="-216" frameY="-623" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkleft0002" x="590" y="0" width="266" height="290" frameX="-77" frameY="-460" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkleft0001" x="0" y="324" width="274" height="279" frameX="-69" frameY="-474" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkidle0002" x="555" y="324" width="147" height="162" frameX="-218" frameY="-586" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="idkidle0001" x="702" y="324" width="142" height="154" frameX="-221" frameY="-594" frameWidth="1920" frameHeight="1080"/>
+</TextureAtlas>
