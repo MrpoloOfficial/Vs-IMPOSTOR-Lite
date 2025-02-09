@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="litered.png">
+<TextureAtlas imagePath="literedv2.png">
 	<!-- Created using the Spritesheet and XML generator -->
 	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
-	<SubTexture name="redright0002" x="0" y="0" width="393" height="166" frameX="-71" frameY="-596" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redright0001" x="0" y="166" width="381" height="161" frameX="-78" frameY="-600" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redup0002" x="0" y="499" width="266" height="207" frameX="-168" frameY="-603" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redleft0002" x="740" y="511" width="209" height="151" frameX="-211" frameY="-610" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redleft0001" x="393" y="167" width="211" height="148" frameX="-211" frameY="-613" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="reddown0002" x="393" y="0" width="347" height="167" frameX="-125" frameY="-612" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="reddown0001" x="332" y="327" width="350" height="162" frameX="-119" frameY="-618" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redup0001" x="266" y="499" width="265" height="205" frameX="-172" frameY="-602" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redidle0004" x="740" y="342" width="291" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redidle0003" x="740" y="0" width="309" height="173" frameX="-126" frameY="-605" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redidle0002" x="0" y="327" width="332" height="172" frameX="-106" frameY="-615" frameWidth="1920" frameHeight="1080"/>
-	<SubTexture name="redidle0001" x="740" y="173" width="292" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redright0000" x="0" y="166" width="393" height="166" frameX="-71" frameY="-596" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redright0001" x="417" y="159" width="381" height="161" frameX="-78" frameY="-600" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redup0000" x="825" y="0" width="266" height="207" frameX="-168" frameY="-603" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="reddown0000" x="0" y="332" width="347" height="167" frameX="-125" frameY="-612" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="reddown0001" x="347" y="332" width="350" height="162" frameX="-119" frameY="-618" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redup0001" x="825" y="207" width="265" height="205" frameX="-172" frameY="-602" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redidle0000" x="309" y="671" width="291" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redidle0001" x="0" y="671" width="309" height="173" frameX="-126" frameY="-605" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redidle0002" x="0" y="499" width="332" height="172" frameX="-106" frameY="-615" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redidle0003" x="332" y="499" width="292" height="169" frameX="-128" frameY="-606" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redleft0020000" x="0" y="0" width="417" height="166" frameX="-20" frameY="-607" frameWidth="1920" frameHeight="1080"/>
+	<SubTexture name="redleft0010000" x="417" y="0" width="408" height="159" frameX="-27" frameY="-612" frameWidth="1920" frameHeight="1080"/>
 </TextureAtlas>
