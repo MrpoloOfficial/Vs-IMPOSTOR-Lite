@@ -1,0 +1,6 @@
+Plays a sound from the directory 'mods/sounds.'
+
+Value 1 is the sound filename.
+
+Value 2 is the volume. 
+Must be from 0-1. (0.5 for 50%, 0.1 for 10%, etc.)
