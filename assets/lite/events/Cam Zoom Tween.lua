@@ -1,4 +1,3 @@
--- Event notes hooks
 function onEvent(name, value1, value2)
 	if name == 'Cam Zoom Tween' then
 		targetZoom = tonumber(value1);
@@ -13,6 +12,5 @@ function onEvent(name, value1, value2)
 		else
 			doTweenZoom('screenZoom', 'camGame', targetZoom, duration, 'quadInOut');
 		end
-		--debugPrint('Event triggered: ', name, targetZoom, duration);
 	end
 end

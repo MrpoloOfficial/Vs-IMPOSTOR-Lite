@@ -1,14 +1,14 @@
-function onEvent(name,v1,v2)
-	if name == 'sabotage' then
-		makeLuaSprite('flash', '', 0, 0);
-        makeGraphic('flash',1280,720,'E90000')
-	      addLuaSprite('flash', true);
-	      setLuaSpriteScrollFactor('flash',0,0)
-	      setProperty('flash.scale.x',2)
-	      setProperty('flash.scale.y',2)
-	      setProperty('flash.alpha',0)
-		setProperty('flash.alpha',0.5)
-		doTweenAlpha('flTw','flash',0,v1,'linear')
-		setObjectCamera('flash', 'other')
+function onCreate()
+	makeLuaSprite('flash', '', 0, 0);
+	makeGraphic('flash', 2000, 2000, 'fd7f7f')
+	addLuaSprite('flash', true);
+	setProperty('flash.alpha', 0.00001)
+	setObjectCamera('flash', 'camHUD');
+end
+
+function onEvent(n,v1,v2)
+	if n == 'sabotage' then
+		setProperty('flash.alpha', 0.6)
+		doTweenAlpha('flTw', 'flash', 0.00001, v1, 'linear')
 	end
 end
