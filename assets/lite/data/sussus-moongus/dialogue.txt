@@ -1,6 +1,13 @@
-dad|red|natural|hi this is a text message
-dad|red|bruh|i hope this is working fine
-dad|red|scared|i hopeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-dad|red|mad|if this doesnt work im gonna fucking-
-dad|red|shocked|OH SHOOT SORRY, I SAID A BAD WORD
-dad|red|natural|anyways, lets get to the song
+dad|red|natural|hi im going to kill you
+bf|bf|natural|oh no! pls dont kill me!
+dad|red|mad|hahahahahaha
+gf|gf|natural|babe be careful! this guy seems...
+gf|gf|natural|sus...
+bf|bf|natural|now that you mention it he does seem kinda..
+bf|bf|natural|too sus..
+dad|red|scared|oh come on guys im just a normal impost- I MEAN crewmate!
+gf|gf|natural|...
+bf|bf|natural|...
+dad|red|bruh|umm...
+dad|red|natural|anyways...wanna sing? 
+bf|bf|natural|ok sure

@@ -357,9 +357,10 @@ class StoryMenuState extends MusicBeatState
 		for (i in 0...stringThing.length)
 		{
 			txtTracklist.text += stringThing[i] + '\n';
-			/*txtTracklist.text = txtTracklist.text.split(" ").map(word -> {
+			txtTracklist.text = txtTracklist.text.charAt(0).toUpperCase() + txtTracklist.text.substr(1).toLowerCase();
+			txtTracklist.text = txtTracklist.text.split(" ").map(word -> {
 				return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-			}).join(" ");*/
+			}).join(" ");
 		}
 		txtTracklist.text = txtTracklist.text;
 

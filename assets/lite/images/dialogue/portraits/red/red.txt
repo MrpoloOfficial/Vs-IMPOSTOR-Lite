@@ -1,3 +1,4 @@
+Red
 natural|heh|24|false|0|0|175|425
 bruh|bruh|24|false|0|-5
 mad|mad|24|false|0|-10

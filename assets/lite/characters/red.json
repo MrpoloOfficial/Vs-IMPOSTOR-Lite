@@ -1,48 +1,15 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
-				30,
-				8
+				46,
+				-1
 			],
-			"indices": [],
-			"fps": 12,
 			"anim": "singLEFT",
-			"loop": false,
-			"name": "redleft"
-		},
-		{
-			"offsets": [
-				0,
-				-10
-			],
-			"indices": [],
 			"fps": 12,
-			"anim": "singDOWN",
-			"loop": false,
-			"name": "reddown"
-		},
-		{
-			"offsets": [
-				0,
-				10
-			],
-			"indices": [],
-			"fps": 12,
-			"anim": "singUP",
-			"loop": false,
-			"name": "redup"
-		},
-		{
-			"offsets": [
-				6,
-				10
-			],
-			"indices": [],
-			"fps": 12,
-			"anim": "singRIGHT",
-			"loop": false,
-			"name": "redright"
+			"name": "redleft",
+			"indices": []
 		},
 		{
 			"offsets": [
@@ -51,15 +18,59 @@
 			],
 			"indices": [
 				2,
-				3,
-				4,
 				1,
+				3,
 				0
 			],
 			"fps": 12,
 			"anim": "idle",
 			"loop": false,
 			"name": "redidle"
+		},
+		{
+			"offsets": [
+				5,
+				11
+			],
+			"indices": [
+				2,
+				1,
+				0
+			],
+			"fps": 12,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "redright"
+		},
+		{
+			"offsets": [
+				14,
+				12
+			],
+			"indices": [
+				2,
+				1,
+				0
+			],
+			"fps": 12,
+			"anim": "singUP",
+			"loop": false,
+			"name": "redup"
+		},
+		{
+			"offsets": [
+				2,
+				-14
+			],
+			"indices": [
+				2,
+				1,
+				0
+			],
+			"fps": 12,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "reddown"
 		}
 	],
 	"vocals_file": "",
