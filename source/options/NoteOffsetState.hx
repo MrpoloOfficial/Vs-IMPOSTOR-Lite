@@ -123,7 +123,7 @@ class NoteOffsetState extends MusicBeatState
 		beatText.visible = false;
 		add(beatText);
 		
-		timeTxt = new FlxText(0, 600, FlxG.width, "", 32);
+		timeTxt = new FlxText(0, 800, FlxG.width, "", 32);
 		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.borderSize = 2;
@@ -541,6 +541,6 @@ class NoteOffsetState extends MusicBeatState
 		else
 			str2 = '(Press Start to Switch)';
 
-		changeModeText.text = '< ${str.toUpperCase()} ${str2.toUpperCase()} >';
+		changeModeText.text = '${str.toUpperCase()}';
 	}
 }

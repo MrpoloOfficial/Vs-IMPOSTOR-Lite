@@ -1,2 +1,2 @@
 Girlfriend
-natural|natural|24|false|0|0|475|425
+natural|natural|24|false|0|0|500|420

@@ -104,7 +104,7 @@ class FreeplayState extends MusicBeatState
 		portrait = new FlxSprite().loadGraphic(Paths.image('portraits/${songs[curSelected].portrait}'));
 		portrait.scale.set(0.4, 0.4);
 		portrait.updateHitbox();
-		portrait.x = FlxG.width - portrait.width;
+		portrait.x = FlxG.width - portrait.width + 25;
 		portrait.y = FlxG.height - portrait.height;
 		portrait.antialiasing = false;
 		add(portrait);
@@ -480,9 +480,10 @@ class FreeplayState extends MusicBeatState
 
 		for (item in grpSongs.members)
 		{
+			item.targetY = bullShit - curSelected;
 			bullShit++;
 			item.alpha = 0.6;
-			if (item.targetY == curSelected)
+			if (item.targetY == Std.int(0))
 				item.alpha = 1;
 		}
 		
@@ -496,8 +497,8 @@ class FreeplayState extends MusicBeatState
 			portrait.scale.set(0.4, 0.4);
 			portrait.updateHitbox();
 			portrait.y = FlxG.height - portrait.height;
-			portrait.x = FlxG.width;
-			tweenPortrait = FlxTween.tween(portrait, {x: FlxG.width - portrait.width}, 0.6, {ease: FlxEase.smootherStepOut});
+			portrait.x = FlxG.width + 25;
+			tweenPortrait = FlxTween.tween(portrait, {x: FlxG.width - portrait.width + 25}, 0.6, {ease: FlxEase.smootherStepOut});
 		}
 	}
 	var tweenPortrait:FlxTween;
@@ -527,8 +528,8 @@ class FreeplayState extends MusicBeatState
 		{
 			var item:Alphabet = grpSongs.members[i];
 			item.visible = item.active = true;
-			item.x = ((item.targetY - lerpSelected) * item.distancePerItem.x) + item.startPosition.x;
-			item.y = ((item.targetY - lerpSelected) * 1.3 * item.distancePerItem.y) + item.startPosition.y;
+			item.x = FlxMath.lerp(item.x, (Math.abs(item.targetY * 80) * -1) + 70, FlxMath.bound(elapsed * 10, 0, 1));
+			item.y = FlxMath.lerp((item.targetY * 1.3 * item.distancePerItem.y) + item.startPosition.y, item.y, Math.exp(-elapsed * 9.6));
 
 			var icon:HealthIcon = iconArray[i];
 			icon.visible = icon.active = true;

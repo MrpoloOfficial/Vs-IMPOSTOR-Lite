@@ -1833,12 +1833,13 @@ class PlayState extends MusicBeatState
 				KillNotes();
 				FlxG.sound.music.onComplete();
 			}
-			if(FlxG.keys.justPressed.TWO) { //Go 10 seconds into the future :O
-				setSongTime(Conductor.songPosition + 10000);
-				clearNotesBefore(Conductor.songPosition);
-			}
 		}
 		#end
+
+		if(FlxG.keys.justPressed.TWO) { //Go 10 seconds into the future :O
+			setSongTime(Conductor.songPosition + 10000);
+			clearNotesBefore(Conductor.songPosition);
+		}
 
 		if(!iconP1.isAnimatedIcon)
 			iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0;
@@ -1851,12 +1852,6 @@ class PlayState extends MusicBeatState
 			iconP2.animation.play((healthBar.percent > 80) ? 'losing' : (healthBar.percent < 20 ? 'winning' : 'normal'));
 
 		timeBar.leftBar.color = FlxColor.fromRGB(137, 143, 240);
-		
-		//if(unspawnNotes[0] != null)
-		//{
-			if(!SONG.notes[curSection].mustHitSection) scoreTxt.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
-			else scoreTxt.color = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
-		//}
 
 		curHealth = FlxMath.lerp(curHealth, health, 0.2 / (ClientPrefs.data.framerate / 60));
 
@@ -3137,6 +3132,10 @@ class PlayState extends MusicBeatState
 		{
 			if (generatedMusic && !endingSong && !isCameraOnForcedPos)
 				moveCameraSection();
+
+			if(!SONG.notes[curSection].mustHitSection) 
+				scoreTxt.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+			else scoreTxt.color = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
 
 			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)
 			{

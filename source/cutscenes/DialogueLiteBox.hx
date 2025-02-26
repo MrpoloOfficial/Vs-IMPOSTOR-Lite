@@ -8,7 +8,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 {
 	var curType:String = '';
 	var curCharacter:String = '';
-	var curCharacterName:String = '';
+	var curCharacterNames:Array<String> = ['', '', ''];
 	var curAnim:String = '';
 
 	var dialogueMusic:FlxSound;
@@ -40,6 +40,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 
 	var addedPortraitsB:Array<Bool> = [false, false, false];
 	var addedPortraitsT:Array<String> = ['', '', ''];
+	var defaultPortraitTypes:Array<String> = ['dad', 'gf', 'bf'];
 
 	public function new(?dialogueList:Array<String>)
 	{
@@ -63,21 +64,29 @@ class DialogueLiteBox extends FlxSpriteGroup
 			if (bgFade.alpha > 0.7) {
 				bgFade.alpha = 0.7;
 			}
+
+			if(bgFade.alpha >= 0.45) {
+				dialogueStarted = true;
+			}
 		}, 5);
+
+		startDialogue(true);
 	}
 
 	var dialogueOpened:Bool = true;
 	var dialogueStarted:Bool = false;
 	var allowedEnterKey:Bool = true;
+	var getElapsed:Float = 0;
 	override function update(elapsed:Float)
 	{
 		if (!isEnding && dialogueMusic != null && dialogueMusic.volume < 0.7)
 			dialogueMusic.volume += 0.02 * elapsed;
 
+		getElapsed = elapsed; // why am i doing this? idk i just wanna sleep
+
 		if (dialogueOpened && !dialogueStarted)
 		{
-			startDialogue(true);
-			dialogueStarted = true;
+			dialogueOpened = false;
 		}
 
 		if(dialogueStarted)
@@ -93,6 +102,11 @@ class DialogueLiteBox extends FlxSpriteGroup
 						if(tabletGrp != null) {
 							tabletGrp.clear();
 							remove(tabletGrp);
+						}
+						if(boxArray != null) {
+							for(box in boxArray) {
+								box.visible = false;
+							}
 						}
 						FlxTween.tween(tablet, {y: FlxG.height + 200}, 0.6, {ease: FlxEase.cubeOut});
 						new FlxTimer().start(0.1, function(tmr:FlxTimer)
@@ -116,6 +130,10 @@ class DialogueLiteBox extends FlxSpriteGroup
 					dialogueList.remove(dialogueList[0]);
 					startDialogue();
 				}
+			}
+
+			if(curType != "" && (portraitLeft != null || portraitMiddle != null || portraitRight != null)) {
+				alphaPortrait(curType);
 			}
 		}
 		super.update(elapsed);
@@ -147,6 +165,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 	}
 
 	var tweenBox:FlxTween;
+	var boxArray:Array<FlxSprite> = [];
 	function refreshStuff(firstTime:Bool = false)
 	{
 		if(firstTime) {
@@ -165,24 +184,26 @@ class DialogueLiteBox extends FlxSpriteGroup
 				}
 			});
 		} else {
-			if(tablet != null) remove(tablet);
+			//if(tablet != null) remove(tablet);
 			if(tabletGrp != null) {
 				if(tweenBox != null) tweenBox.cancel(); 
 				tweenBox = FlxTween.tween(tabletGrp, {y: tabletGrp.y + 120}, 0.000000001);
 			}
 
-			tablet = new FlxSprite();
+			//tablet = new FlxSprite();
 			tablet.loadGraphic(Paths.image('dialogue/tablets/${curCharacter}tablet'));
 			tablet.updateHitbox();
 			tablet.screenCenter(X);
 			tablet.y = FlxG.height - tablet.height + 125;
 			tablet.antialiasing = false;
+			//add(tablet);
 			
 			var portraitPosition:Array<Dynamic> = [];
 			switch (curType)
 			{
 				case 'dad':
 					if(addedPortraitsB[0] != true && addedPortraitsT[0] != curCharacter) {
+						if(portraitLeft != null) remove(portraitLeft);
 						portraitLeft = new FlxSprite(230, 465);
 						portraitLeft.frames = Paths.getSparrowAtlas('dialogue/portraits/$curCharacter/$curCharacter');
 						for(i in 0...portraitInfo.length) {
@@ -191,13 +212,13 @@ class DialogueLiteBox extends FlxSpriteGroup
 								if(i == 1) portraitPosition = [splitInfo[6], splitInfo[7]]; 
 								portraitLeft.animation.addByPrefix(splitInfo[0], splitInfo[1], splitInfo[2], splitInfo[3]);
 								dadAnimOffsets[splitInfo[0]] = [splitInfo[4], splitInfo[5]];
-							} else curCharacterName = portraitInfo[0];
+							} else curCharacterNames[0] = portraitInfo[0];
 							portraitInfo.remove(portraitInfo[0]);
 						}
 						portraitLeft.updateHitbox();
 						portraitLeft.antialiasing = false;
 						portraitLeft.setPosition(portraitPosition[0], portraitPosition[1]);
-						add(portraitLeft);
+						insert(members.indexOf(tablet), portraitLeft);
 
 						portraitLeft.alpha = 0.00001;
 						portraitLeft.y = portraitLeft.y + portraitLeft.height;
@@ -208,6 +229,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 					}
 				case 'gf':
 					if(addedPortraitsB[1] != true && addedPortraitsT[1] != curCharacter) {
+						if(portraitMiddle != null) remove(portraitMiddle);
 						portraitMiddle = new FlxSprite(505, 480);
 						portraitMiddle.frames = Paths.getSparrowAtlas('dialogue/portraits/$curCharacter/$curCharacter');
 						for(i in 0...portraitInfo.length) {
@@ -216,13 +238,13 @@ class DialogueLiteBox extends FlxSpriteGroup
 								if(i == 1) portraitPosition = [splitInfo[6], splitInfo[7]]; 
 								portraitMiddle.animation.addByPrefix(splitInfo[0], splitInfo[1], splitInfo[2], splitInfo[3]);
 								gfAnimOffsets[splitInfo[0]] = [splitInfo[4], splitInfo[5]];
-							} else curCharacterName = portraitInfo[0];
+							} else curCharacterNames[1] = portraitInfo[0];
 							portraitInfo.remove(portraitInfo[0]);
 						}
 						portraitMiddle.updateHitbox();
 						portraitMiddle.antialiasing = false;
 						portraitMiddle.setPosition(portraitPosition[0], portraitPosition[1]);
-						add(portraitMiddle);
+						insert(members.indexOf(tablet), portraitMiddle);
 
 						portraitMiddle.alpha = 0.00001;
 						portraitMiddle.y = portraitMiddle.y + portraitMiddle.height;
@@ -233,6 +255,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 					}
 				case 'bf':
 					if(addedPortraitsB[2] != true && addedPortraitsT[2] != curCharacter) {
+						if(portraitRight != null) remove(portraitRight);
 						portraitRight = new FlxSprite(845, 490);
 						portraitRight.frames = Paths.getSparrowAtlas('dialogue/portraits/$curCharacter/$curCharacter');
 						for(i in 0...portraitInfo.length) {
@@ -241,13 +264,13 @@ class DialogueLiteBox extends FlxSpriteGroup
 								if(i == 1) portraitPosition = [splitInfo[6], splitInfo[7]]; 
 								portraitRight.animation.addByPrefix(splitInfo[0], splitInfo[1], splitInfo[2], splitInfo[3]);
 								bfAnimOffsets[splitInfo[0]] = [splitInfo[4], splitInfo[5]];
-							} else curCharacterName = portraitInfo[0];
+							} else curCharacterNames[2] = portraitInfo[0];
 							portraitInfo.remove(portraitInfo[0]);
 						}
 						portraitRight.updateHitbox();
 						portraitRight.antialiasing = false;
 						portraitRight.setPosition(portraitPosition[0], portraitPosition[1]);
-						add(portraitRight);
+						insert(members.indexOf(tablet), portraitRight);
 
 						portraitRight.alpha = 0.00001;
 						portraitRight.y = portraitRight.y + portraitRight.height;
@@ -257,7 +280,6 @@ class DialogueLiteBox extends FlxSpriteGroup
 						//if(addedPortraitsB[2] == false) addedPortraitsB[2] = true;
 					}
 			}
-			add(tablet);
 
 			tabletGrp = new FlxSpriteGroup();
 			add(tabletGrp);
@@ -271,6 +293,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 			box.x = tablet.x + 75;
 			box.y = tablet.y + 75;
 			tabletGrp.add(box);
+			boxArray.push(box);
 
 			iconSplitInfo = iconInfo[0].split("|");
 
@@ -281,22 +304,25 @@ class DialogueLiteBox extends FlxSpriteGroup
 			icon.x = box.x + (curType == 'bf' ? (box.width - icon.width) : 0) + iconSplitInfo[2];
 			icon.y = box.y + iconSplitInfo[3];
 			tabletGrp.add(icon);
+			boxArray.push(icon);
 
 			dialogueName = new FlxText();
-			dialogueName.x = box.x + icon.width - 10 - (curType == 'bf' ? icon.width : 0);
-			dialogueName.y = box.y + 5;
 			dialogueName.fieldWidth = box.width - icon.width;
 			dialogueName.setFormat(Paths.font("vcr.ttf"), 26, FlxColor.BLACK, (curType == 'bf' ? RIGHT : LEFT));
-			dialogueName.text = curCharacterName;
+			dialogueName.x = box.x + 115 - (curType == 'bf' ? 125 : 0);
+			dialogueName.y = box.y + 5;
+			dialogueName.text = curCharacterNames[defaultPortraitTypes.indexOf(curType)];
 			tabletGrp.add(dialogueName);
+			boxArray.push(dialogueName);
 
 			swagDialogue = new FlxText();
-			swagDialogue.x = box.x + icon.width - 10 - (curType == 'bf' ? icon.width : 0);
-			swagDialogue.y = box.y + 40;
 			swagDialogue.fieldWidth = box.width - icon.width - 25;
 			swagDialogue.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.BLACK, (curType == 'bf' ? RIGHT : LEFT));
+			swagDialogue.x = box.x + 115 - (curType == 'bf' ? 100 : 0);
+			swagDialogue.y = box.y + 40;
 			swagDialogue.text = dialogueList[0];
 			tabletGrp.add(swagDialogue);
+			boxArray.push(swagDialogue);
 		}
 	}
 
@@ -316,6 +342,26 @@ class DialogueLiteBox extends FlxSpriteGroup
 				portraitRight.animation.play(name);
 				if (bfAnimOffsets.exists(name))
 					portraitRight.offset.set(bfAnimOffsets.get(name)[0], bfAnimOffsets.get(name)[1]);
+		}
+	}
+
+	var twnMoveY:FlxTween;
+	function alphaPortrait(except:String)
+	{
+		switch(except)
+		{
+			case 'dad':
+				if(portraitRight != null) portraitRight.alpha = FlxMath.lerp(portraitRight.alpha, 0.6, FlxMath.bound(getElapsed * 14, 0, 1));
+				if(portraitMiddle != null) portraitMiddle.alpha = FlxMath.lerp(portraitMiddle.alpha, 0.6, FlxMath.bound(getElapsed * 14, 0, 1));
+				if(portraitLeft != null) portraitLeft.alpha = FlxMath.lerp(portraitLeft.alpha, 1, FlxMath.bound(getElapsed * 14, 0, 1));
+			case 'gf':
+				if(portraitRight != null) portraitRight.alpha = FlxMath.lerp(portraitRight.alpha, 0.6, FlxMath.bound(getElapsed * 14, 0, 1));
+				if(portraitLeft != null) portraitLeft.alpha = FlxMath.lerp(portraitLeft.alpha, 0.6, FlxMath.bound(getElapsed * 14, 0, 1));
+				if(portraitMiddle != null) portraitMiddle.alpha = FlxMath.lerp(portraitMiddle.alpha, 1, FlxMath.bound(getElapsed * 14, 0, 1));
+			case 'bf':
+				if(portraitMiddle != null) portraitMiddle.alpha = FlxMath.lerp(portraitMiddle.alpha, 0.6, FlxMath.bound(getElapsed * 14, 0, 1));
+				if(portraitLeft != null) portraitLeft.alpha = FlxMath.lerp(portraitLeft.alpha, 0.6, FlxMath.bound(getElapsed * 14, 0, 1));
+				if(portraitRight != null) portraitRight.alpha = FlxMath.lerp(portraitRight.alpha, 1, FlxMath.bound(getElapsed * 14, 0, 1));
 		}
 	}
 

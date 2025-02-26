@@ -43,24 +43,23 @@ class MainMenuState extends MusicBeatState
 
 		var red:FlxSprite = new FlxSprite();
 		red.frames = Paths.getSparrowAtlas('mainmenu/redmenu');
-		red.animation.addByPrefix('idlered', 'idle', 12);
+		red.animation.addByPrefix('idlered', 'redmenu', 4);
 		red.animation.play('idlered');
 		red.antialiasing = false;
-		red.scale.set(1.5, 1.5);
+		red.scale.set(1.2, 1.2);
 		red.updateHitbox();
-		red.x = FlxG.width - red.width + 150;
+		red.x = FlxG.width - red.width + 125;
 		red.y = FlxG.height - red.height + 175;
 		add(red);
 
 		var green:FlxSprite = new FlxSprite();
 		green.frames = Paths.getSparrowAtlas('mainmenu/greenmenu');
-		green.animation.addByPrefix('idlegreen', 'idle', 12);
+		green.animation.addByPrefix('idlegreen', 'greenmenu', 4);
 		green.animation.play('idlegreen');
 		green.antialiasing = false;
-		green.scale.set(1.5, 1.5);
+		green.scale.set(1.2, 1.2);
 		green.updateHitbox();
-		green.flipX = true;
-		green.x = -150;
+		green.x = -125;
 		green.y = FlxG.height - green.height + 175;
 		add(green);
 
@@ -90,7 +89,7 @@ class MainMenuState extends MusicBeatState
 		logo.screenCenter(X);
 		add(logo);
 
-		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Lite Funkin' v1.0", 12);
+		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Lite Funkin: Impostor DEMO", 12);
 		fnfVer.scrollFactor.set();
 		fnfVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(fnfVer);

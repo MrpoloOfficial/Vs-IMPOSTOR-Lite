@@ -2,47 +2,84 @@
 	"animations": [
 		{
 			"offsets": [
-				18,
-				3
+				0,
+				0
 			],
-			"loop": false,
-			"fps": 12,
-			"anim": "singLEFT",
+			"loop": true,
+			"fps": 2,
+			"anim": "idle",
 			"indices": [],
-			"name": "idkleft"
+			"name": "idkidle"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				10,
 				8
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "idkdown"
-		},
-		{
-			"offsets": [
-				10,
-				6
-			],
-			"loop": false,
 			"fps": 12,
-			"anim": "singUP",
-			"indices": [],
-			"name": "idkup"
+			"name": "idkdown",
+			"indices": [
+				1,
+				0
+			]
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-9,
 				-3
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "idkright"
+			"fps": 12,
+			"name": "idkright",
+			"indices": [
+				1,
+				0
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				18,
+				3
+			],
+			"anim": "singLEFT",
+			"fps": 12,
+			"name": "idkleft",
+			"indices": [
+				1,
+				0
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				6
+			],
+			"anim": "singUP",
+			"fps": 12,
+			"name": "idkup",
+			"indices": [
+				1,
+				0
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singUP-alt",
+			"fps": 12,
+			"name": "idkuptaunt",
+			"indices": [
+				1,
+				0
+			]
 		},
 		{
 			"offsets": [
@@ -50,10 +87,10 @@
 				0
 			],
 			"indices": [],
-			"fps": 2,
-			"anim": "idle",
-			"loop": true,
-			"name": "idkidle"
+			"fps": 12,
+			"anim": "singDOWN-alt",
+			"loop": false,
+			"name": "idkdowntaunt"
 		}
 	],
 	"vocals_file": "",

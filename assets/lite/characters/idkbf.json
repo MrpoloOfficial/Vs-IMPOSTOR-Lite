@@ -1,0 +1,205 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				60,
+				-4
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "left"
+		},
+		{
+			"offsets": [
+				29,
+				5
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singUP",
+			"indices": [
+				0,
+				1,
+				2
+			],
+			"name": "up"
+		},
+		{
+			"offsets": [
+				13,
+				15
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singUP-alt",
+			"indices": [
+				0,
+				1,
+				2
+			],
+			"name": "uptaught"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singDOWN-alt",
+			"fps": 12,
+			"name": "downtaught",
+			"indices": [
+				0,
+				1,
+				2
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				-30
+			],
+			"anim": "singDOWN",
+			"fps": 12,
+			"name": "down",
+			"indices": [
+				0,
+				1,
+				2
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-36,
+				-22
+			],
+			"anim": "singRIGHT",
+			"fps": 12,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				-20
+			],
+			"anim": "firstDeath",
+			"fps": 12,
+			"name": "lose",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [
+				4,
+				0
+			],
+			"anim": "idle",
+			"fps": 2,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"offsets": [
+				10,
+				-6
+			],
+			"indices": [
+				0,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"fps": 12,
+			"anim": "singLEFTmiss",
+			"loop": false,
+			"name": "miss"
+		},
+		{
+			"offsets": [
+				10,
+				-6
+			],
+			"indices": [
+				0,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"fps": 12,
+			"anim": "singUPmiss",
+			"loop": false,
+			"name": "miss"
+		},
+		{
+			"offsets": [
+				10,
+				-6
+			],
+			"indices": [
+				0,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"fps": 12,
+			"anim": "singRIGHTmiss",
+			"loop": false,
+			"name": "miss"
+		},
+		{
+			"offsets": [
+				10,
+				-6
+			],
+			"indices": [
+				0,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"fps": 12,
+			"anim": "singDOWNmiss",
+			"loop": false,
+			"name": "miss"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": true,
+	"image": "characters/idkbf",
+	"position": [
+		-2240,
+		-260
+	],
+	"healthicon": "bf",
+	"flip_x": true,
+	"healthbar_colors": [
+		154,
+		224,
+		255
+	],
+	"camera_position": [
+		-200,
+		-420
+	],
+	"sing_duration": 4,
+	"scale": 2.2,
+	"_editor_isPlayer": true
+}
