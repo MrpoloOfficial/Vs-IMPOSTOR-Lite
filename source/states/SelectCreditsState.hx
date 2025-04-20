@@ -24,7 +24,8 @@ class SelectCreditsState extends MusicBeatState
                 ['gtm',				'Description 2 here',			'',		'FFFFFF'],
                 ['CaptainLite',		'Description 3 here',			'',		'FFFFFF'],
                 ['JustAGuy',		'Description 4 here',			'',		'FFFFFF'],
-                ['Mrpolo',			'hi i coded the ENTIRE mod, i hope you enjoy\'ed it :D',			'',		'FFFFFF']
+                ['Mrpolo',			'hi i coded the ENTIRE mod, i hope you enjoy\'ed it :D',			'',		'FFFFFF'],
+                ['Red',		        "hi i'm a Red Impostor, i've coded this mod a bit, and i'm happy to participate in it.",			'',		'FFFFFF']
             ]
         ]
     ];
