@@ -21,9 +21,12 @@ class SelectCreditsState extends MusicBeatState
         ],
         ["liteImp", [300, 0], [0.4, 0.4], [
                 ['upqgg',			'Description 1 here',			'',		'FFFFFF'],
-                ['gtm',				'Description 2 here',			'',		'FFFFFF'],
-                ['CaptainLite',		'Description 3 here',			'',		'FFFFFF'],
-                ['JustAGuy',		'Description 4 here',			'',		'FFFFFF'],
+                ['Jio',			    'Description 2 here',			'',		'FFFFFF'],
+                ['Lego',			'Description 3 here',			'',		'FFFFFF'],
+                ['gtm',				'Description 4 here',			'',		'FFFFFF'],
+                ['CaptainLite',		'Description 5 here',			'',		'FFFFFF'],
+                ['Snuts',			'Description 6 here',			'',		'FFFFFF'],
+                ['JustAGuy',		'Description 6 here',			'',		'FFFFFF'],
                 ['Mrpolo',			'hi i coded the ENTIRE mod, i hope you enjoy\'ed it :D',			'',		'FFFFFF'],
                 ['Red',		        "hi i'm a Red Impostor, i've coded this mod a bit, and i'm happy to participate in it.",			'',		'FFFFFF']
             ]
