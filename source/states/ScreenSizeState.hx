@@ -3,6 +3,9 @@ package states;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
+import openfl.system.Capabilities;
+import flixel.system.scaleModes.RatioScaleMode;
+import openfl.Lib;
 
 class ScreenSizeState extends MusicBeatState
 {
