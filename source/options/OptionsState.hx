@@ -72,6 +72,7 @@ class OptionsState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Looking at the options menu", null);
 		#end
+		FlxG.camera.scroll.x = 0;
 	}
 
 	override function update(elapsed:Float) {

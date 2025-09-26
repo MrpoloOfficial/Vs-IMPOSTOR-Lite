@@ -49,7 +49,7 @@ class MainMenuState extends MusicBeatState
 		red.scale.set(1.2, 1.2);
 		red.updateHitbox();
 		red.x = FlxG.width - red.width + 125;
-		red.y = FlxG.height - red.height + 175;
+		red.y = FlxG.height - red.height + 75;
 		add(red);
 
 		var green:FlxSprite = new FlxSprite();
@@ -68,7 +68,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(0, 350 + (i * 125));
+			var menuItem:FlxSprite = new FlxSprite(0, 300 + (i * 125));
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu');
 			menuItem.animation.addByPrefix('idle', optionShit[i], 24);
 			menuItem.animation.addByPrefix('selected', "sel_" + optionShit[i], 24);

@@ -456,7 +456,7 @@ class Paths
 		if(!currentTrackedSounds.exists(gottenPath))
 		{
 			var retKey:String = (path != null) ? '$path/$key' : key;
-			retKey = ((path == 'songs') ? 'songs:' : '') + getPath('$retKey.$SOUND_EXT', SOUND, library);
+			retKey = getPath('$retKey.$SOUND_EXT', SOUND, library);
 			//trace(retKey);
 			if(OpenFlAssets.exists(retKey, SOUND))
 			{

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <TextureAtlas imagePath="red.png">
-<SubTexture name="normal0000" x="217" y="119" width="104" height="103" frameX="-19" frameY="-20" frameWidth="150" frameHeight="150" />
-<SubTexture name="normal0001" x="112" y="119" width="105" height="104" frameX="-20" frameY="-20" frameWidth="150" frameHeight="150" />
-<SubTexture name="lose0000" x="114" y="0" width="111" height="117" frameX="-19" frameY="-9" frameWidth="150" frameHeight="150" />
-<SubTexture name="lose0001" x="0" y="0" width="114" height="119" frameX="-17" frameY="-7" frameWidth="150" frameHeight="150" />
-<SubTexture name="win0000" x="225" y="0" width="108" height="112" frameX="-19" frameY="-14" frameWidth="150" frameHeight="150" />
-<SubTexture name="win0001" x="0" y="119" width="112" height="111" frameX="-18" frameY="-14" frameWidth="150" frameHeight="150" />
+<SubTexture name="lose0000" x="0" y="0" width="96" height="111" frameX="-13" frameY="-20" frameWidth="150" frameHeight="150" />
+<SubTexture name="lose0001" x="96" y="0" width="96" height="111" frameX="-13" frameY="-20" frameWidth="150" frameHeight="150" />
+<SubTexture name="normal0000" x="119" y="111" width="97" height="97" frameX="-13" frameY="-27" frameWidth="150" frameHeight="150" />
+<SubTexture name="normal0001" x="216" y="111" width="97" height="97" frameX="-13" frameY="-27" frameWidth="150" frameHeight="150" />
+<SubTexture name="win0000" x="0" y="111" width="119" height="101" frameX="-13" frameY="-25" frameWidth="150" frameHeight="150" />
+<SubTexture name="win0001" x="192" y="0" width="123" height="104" frameX="-13" frameY="-22" frameWidth="150" frameHeight="150" />
 </TextureAtlas>

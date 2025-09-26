@@ -2,6 +2,6 @@
 <TextureAtlas imagePath="redmenu.png">
 	<!-- Created using the Spritesheet and XML generator -->
 	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
-	<SubTexture name="redmenu0000" x="0" y="0" width="572" height="519" frameX="-107" frameY="-68" frameWidth="684" frameHeight="650"/>
-	<SubTexture name="redmenu0001" x="572" y="0" width="571" height="519" frameX="-107" frameY="-68" frameWidth="684" frameHeight="650"/>
+	<SubTexture name="redmenu0000" x="0" y="512" width="590" height="513" frameX="2" frameY="2" frameWidth="586" frameHeight="509"/>
+	<SubTexture name="redmenu0001" x="0" y="0" width="593" height="512" frameX="2" frameY="2" frameWidth="589" frameHeight="508"/>
 </TextureAtlas>

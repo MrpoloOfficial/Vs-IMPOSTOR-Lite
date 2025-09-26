@@ -9,29 +9,8 @@ class SelectCreditsState extends MusicBeatState
 
     public var logosGrp:FlxTypedGroup<FlxSprite>;
 
-    public var teamsList:Array<Array<Dynamic>> = [ // Team Name - Position Add[X/Y] - Scale[X/Y] - Devs
-        ["lite", [-300, 0], [0.75, 0.75], [
-                ['choma',			'Description 1 here',			'',		'FFFFFF'],
-                ['bpforest',		'Description 2 here',			'',		'FFFFFF'],
-                ['gamemon',		    'Description 3 here',			'',		'FFFFFF'],
-                ['mayagi',		    'Description 4 here',			'',		'FFFFFF'],
-                ['ratang',			'Description 5 here',			'',		'FFFFFF'],
-                ['atin',			'Description 6 here',			'',		'FFFFFF']
-            ]
-        ],
-        ["liteImp", [300, 0], [0.4, 0.4], [
-                ['upqgg',			'Description 1 here',			'',		'FFFFFF'],
-                ['Jio',			    'Description 2 here',			'',		'FFFFFF'],
-                ['Lego',			'Description 3 here',			'',		'FFFFFF'],
-                ['gtm',				'Description 4 here',			'',		'FFFFFF'],
-                ['CaptainLite',		'Description 5 here',			'',		'FFFFFF'],
-                ['Snuts',			'Description 6 here',			'',		'FFFFFF'],
-                ['JustAGuy',		'Description 6 here',			'',		'FFFFFF'],
-                ['Mrpolo',			'hi i coded the ENTIRE mod, i hope you enjoy\'ed it :D',			'',		'FFFFFF'],
-                ['Red',		        "hi i'm a Red Impostor, i've coded this mod a bit, and i'm happy to participate in it.",			'',		'FFFFFF']
-            ]
-        ]
-    ];
+    // ARRAY: [Team Name - Position Add[X/Y] - Scale[X/Y] - Devs]
+    public var teamsList:Array<Dynamic> = tjson.TJSON.parse(File.getContent(Paths.getLitePath("data/credits.json"))).credits;
 
     override function create()
     {

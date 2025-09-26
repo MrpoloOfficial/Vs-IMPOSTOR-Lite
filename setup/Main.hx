@@ -17,7 +17,7 @@ class Main {
 			FileSystem.createDirectory(".haxelib");
 
 		// brief explanation: first we parse a json containing the library names, data, and such
-		final libs:Array<Library> = Json.parse(File.getContent('./hmm.json')).dependencies;
+		final libs:Array<Library> = Json.parse(File.getContent('hmm.json')).dependencies;
 
 		// now we loop through the data we currently have
 		for (data in libs) {

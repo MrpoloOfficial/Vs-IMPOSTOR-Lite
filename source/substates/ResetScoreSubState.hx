@@ -113,6 +113,9 @@ class ResetScoreSubState extends MusicBeatSubstate
 		yesText.scale.set(scales[confirmInt], scales[confirmInt]);
 		noText.alpha = alphas[1 - confirmInt];
 		noText.scale.set(scales[1 - confirmInt], scales[1 - confirmInt]);
-		if(week == -1) icon.animation.curAnim.curFrame = 0;
+		if(week == -1) {
+			if(!icon.isAnimatedIcon) icon.animation.curAnim.curFrame = 0;
+			else if(icon.isAnimatedIcon) icon.animation.play('normal');
+		}
 	}
 }

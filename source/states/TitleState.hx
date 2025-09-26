@@ -39,7 +39,7 @@ class TitleState extends MusicBeatState
 		var bf:FlxSprite = new FlxSprite().loadGraphic(Paths.image('title/bf'));
 		bf.antialiasing = false;
 		bf.screenCenter();
-		bf.x -= 250;
+		bf.x += 225;
 		bf.y += 50;
 		bf.updateHitbox();
 		titleStuff.add(bf);
@@ -51,11 +51,11 @@ class TitleState extends MusicBeatState
 		enter.updateHitbox();
 		titleStuff.add(enter);
 
-		logo = new FlxSprite(0, 125).loadGraphic(Paths.image('title/logo'));
+		logo = new FlxSprite(0, 5).loadGraphic(Paths.image('title/logo'));
 		logo.scale.set(0.5, 0.5);
 		logo.updateHitbox();
 		logo.centerOffsets();
-		logo.x = FlxG.width - logo.width - 90;
+		logo.x = 10;
 		logo.antialiasing = false;
 		titleStuff.add(logo);
 
@@ -79,7 +79,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 			for(item in titleStuff.members)
-			FlxTween.tween(item, {y: item.y + 1000}, 1.5, {ease: FlxEase.smootherStepInOut, startDelay: 0.03});
+			FlxTween.tween(item, {y: item.y + 1000}, 1.35, {ease: FlxEase.smootherStepIn, startDelay: 0.03});
 			new FlxTimer().start(1.3, function(tmr:FlxTimer)
 			{
 				FlxG.switchState(() -> new MainMenuState());

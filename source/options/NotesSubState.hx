@@ -58,12 +58,14 @@ class NotesSubState extends MusicBeatSubstate
 		bg.color = 0xFFEA71FD;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.scrollFactor.set(0, 0);
 		add(bg);
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 		grid.velocity.set(40, 40);
 		grid.alpha = 0;
 		FlxTween.tween(grid, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
+		grid.scrollFactor.set(0, 0);
 		add(grid);
 
 		modeBG = new FlxSprite(215, 85).makeGraphic(315, 115, FlxColor.BLACK);
@@ -82,10 +84,10 @@ class NotesSubState extends MusicBeatSubstate
 		myNotes = new FlxTypedGroup<StrumNote>();
 		add(myNotes);
 
-		var bg:FlxSprite = new FlxSprite(720).makeGraphic(FlxG.width - 720, FlxG.height, FlxColor.BLACK);
+		var bg:FlxSprite = new FlxSprite(720).makeGraphic(FlxG.width - 660, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0.25;
 		add(bg);
-		var bg:FlxSprite = new FlxSprite(750, 160).makeGraphic(FlxG.width - 780, 540, FlxColor.BLACK);
+		var bg:FlxSprite = new FlxSprite(750, 160).makeGraphic(FlxG.width - 720, 540, FlxColor.BLACK);
 		bg.alpha = 0.25;
 		add(bg);
 		
@@ -149,11 +151,13 @@ class NotesSubState extends MusicBeatSubstate
 		var tip:FlxText = new FlxText(tipX, tipY, 0, "Press RELOAD to Reset the selected Note Part.", 16);
 		tip.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tip.borderSize = 2;
+		tip.scrollFactor.set(0, 0);
 		add(tip);
 
 		tipTxt = new FlxText(tipX, tipY + 24, 0, '', 16);
 		tipTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tipTxt.borderSize = 2;
+		tipTxt.scrollFactor.set(0, 0);
 		add(tipTxt);
 		updateTip();
 
@@ -166,6 +170,8 @@ class NotesSubState extends MusicBeatSubstate
 		FlxG.mouse.visible = !controls.controllerMode;
 		controllerPointer.visible = controls.controllerMode;
 		_lastControllerMode = controls.controllerMode;
+
+		FlxG.camera.scroll.x = 60;
 	}
 
 	function updateTip()
@@ -635,6 +641,7 @@ class NotesSubState extends MusicBeatSubstate
 			newNote.setGraphicSize(102);
 			newNote.updateHitbox();
 			newNote.ID = i;
+			newNote.scrollFactor.set(1, 1);
 			myNotes.add(newNote);
 		}
 
@@ -685,7 +692,7 @@ class NotesSubState extends MusicBeatSubstate
 		if(wheelColor.brightness != 0)
 		{
 			var hueWrap:Float = wheelColor.hue * Math.PI / 180;
-			colorWheelSelector.x += Math.sin(hueWrap) * colorWheel.width/2 * wheelColor.saturation;
+			colorWheelSelector.x += (Math.sin(hueWrap) * colorWheel.width/2 * wheelColor.saturation) + 60;
 			colorWheelSelector.y -= Math.cos(hueWrap) * colorWheel.height/2 * wheelColor.saturation;
 		}
 		colorGradientSelector.y = colorGradient.y + colorGradient.height * (1 - color.brightness);

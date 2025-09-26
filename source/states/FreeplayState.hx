@@ -119,7 +119,7 @@ class FreeplayState extends MusicBeatState
 			songText.targetY = i;
 			grpSongs.add(songText);
 
-			songText.scaleX = Math.min(1, 980 / songText.width);
+			songText.scaleX = Math.min(1, 680 / songText.width);
 			songText.snapToPosition();
 
 			Mods.currentModDirectory = songs[i].folder;
@@ -217,6 +217,8 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
+		portraitHolder += 0.01;
+
 		var shiftMult:Int = 1;
 		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
 
@@ -228,7 +230,7 @@ class FreeplayState extends MusicBeatState
 				{
 					curSelected = 0;
 					changeSelection();
-					holdTime = 0;	
+					holdTime = 0;
 				}
 				else if(FlxG.keys.justPressed.END)
 				{
@@ -284,7 +286,16 @@ class FreeplayState extends MusicBeatState
 			scoreText.text = '' + Std.string(lerpScore).lpad('0', 8);
 			ratingText.text = '\n' + ratingSplit.join('.') + '%';
 			positionHighscore();
-	
+
+			if(portraitHolder > 0.2 && !isPortraitOn && portrait.x >= FlxG.width) {
+				isPortraitOn = true;
+				FlxTween.cancelTweensOf(portrait);
+				portrait.loadGraphic(Paths.image('portraits/${songs[curSelected].portrait}'));
+				portrait.scale.set(0.4, 0.4);
+				portrait.updateHitbox();
+				portrait.y = FlxG.height - portrait.height;
+				FlxTween.tween(portrait, {x: FlxG.width - portrait.width + 25, alpha: 1}, 0.6, {ease: FlxEase.quartOut});
+			}
 		}
 
 		if (controls.BACK)
@@ -373,7 +384,7 @@ class FreeplayState extends MusicBeatState
 				curDifficulty = 1;
 				trace('Couldnt find file');
 			}*/
-			trace(poop);
+			trace("Loading song: " + poop);
 
 			try
 			{
@@ -430,6 +441,8 @@ class FreeplayState extends MusicBeatState
 		vocals = null;
 	}
 
+	var portraitHolder:Float = 0;
+	var isPortraitOn:Bool = true;
 	function changeSelection(change:Int = 0, playSound:Bool = true)
 	{
 		if (player.playingMusic)
@@ -491,17 +504,13 @@ class FreeplayState extends MusicBeatState
 		PlayState.storyWeek = songs[curSelected].week;
 		Difficulty.loadFromWeek();
 
-		if(curPortrait != prevPortrait) {
-			if(tweenPortrait != null) tweenPortrait.cancel();
-			portrait.loadGraphic(Paths.image('portraits/${songs[curSelected].portrait}'));
-			portrait.scale.set(0.4, 0.4);
-			portrait.updateHitbox();
-			portrait.y = FlxG.height - portrait.height;
-			portrait.x = FlxG.width + 25;
-			tweenPortrait = FlxTween.tween(portrait, {x: FlxG.width - portrait.width + 25}, 0.6, {ease: FlxEase.smootherStepOut});
+		if(curPortrait != prevPortrait) portraitHolder = 0;
+		if(curPortrait != prevPortrait && isPortraitOn) {
+            FlxTween.cancelTweensOf(portrait);
+			isPortraitOn = false;
+            FlxTween.tween(portrait, {x: FlxG.width + 25, alpha: 0}, 0.3);
 		}
 	}
-	var tweenPortrait:FlxTween;
 
 	private function positionHighscore() {
 		scoreText.x = FlxG.width - scoreText.width - 6;

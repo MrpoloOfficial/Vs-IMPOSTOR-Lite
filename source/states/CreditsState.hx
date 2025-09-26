@@ -21,6 +21,9 @@ class CreditsState extends MusicBeatState
 
 	var offsetThing:Float = -75;
 
+	public var onST:Bool = false;
+	public var specialSection:SpecialThanks;
+
 	public static var teamName:String = "";
 
 	public static var defaultList:Array<Array<String>> = [];
@@ -58,6 +61,7 @@ class CreditsState extends MusicBeatState
 			optionText.targetX = i;
 			optionText.antialiasing = ClientPrefs.data.antialiasing;
 			grpOptions.add(optionText);
+			optionText.visible = (creditsStuff[i][0] != "SpecialThanks");
 
 			if(isSelectable) {
 				if(creditsStuff[i][4] != null)
@@ -68,6 +72,14 @@ class CreditsState extends MusicBeatState
 
 				if(curSelected == -1) curSelected = i;
 			}
+		}
+
+		if(teamName == "liteImp")
+		{
+			specialSection = new SpecialThanks();
+			specialSection.sprAttacher = grpOptions.members[grpOptions.members.length-1];
+			specialSection.stateGet = this;
+			add(specialSection);
 		}
 
 		leftArrow = new FlxSprite(20, 0);
@@ -106,7 +118,7 @@ class CreditsState extends MusicBeatState
 		socialCheck.screenCenter(X);
 		add(socialCheck);
 
-		bg.color = CoolUtil.colorFromString(creditsStuff[curSelected][3]);
+		bg.color = CoolUtil.colorFromString(creditsStuff[curSelected][0] == "SpecialThanks" ? "FFFFFF" : creditsStuff[curSelected][3]);
 		intendedColor = bg.color;
 		changeSelection();
 		super.create();
@@ -165,7 +177,7 @@ class CreditsState extends MusicBeatState
 				}
 			}
 
-			if(controls.ACCEPT && (creditsStuff[curSelected][2] == null || creditsStuff[curSelected][2].length > 4)) {
+			if(creditsStuff[curSelected][0] != "SpecialThanks" && controls.ACCEPT && (creditsStuff[curSelected][2] == null || creditsStuff[curSelected][2].length > 4)) {
 				CoolUtil.browserLoad(creditsStuff[curSelected][2]);
 			}
 			if (controls.BACK)
@@ -182,9 +194,9 @@ class CreditsState extends MusicBeatState
 	}
 
 	var moveTween:FlxTween = null;
-	function changeSelection(change:Int = 0)
+	public function changeSelection(change:Int = 0, manualText:String = "")
 	{
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		if(manualText == "") FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		do {
 			curSelected += change;
 			if (curSelected < 0)
@@ -193,7 +205,7 @@ class CreditsState extends MusicBeatState
 				curSelected = 0;
 		} while(unselectableCheck(curSelected));
 
-		var newColor:FlxColor = CoolUtil.colorFromString(creditsStuff[curSelected][3]);
+		var newColor:FlxColor = CoolUtil.colorFromString(creditsStuff[curSelected][0] == "SpecialThanks" ? "FFFFFF" : creditsStuff[curSelected][3]);
 		//trace('The BG color is: $newColor');
 		if(newColor != intendedColor) {
 			if(colorTween != null) {
@@ -207,14 +219,20 @@ class CreditsState extends MusicBeatState
 			});
 		}
 
-		var bullShit:Int = 0;
-		for (item in grpOptions.members)
-		{
-			item.targetX = bullShit - curSelected;
-			bullShit++;
+		for (i => item in grpOptions.members)
+			item.targetX = i - curSelected;
+
+		onST = (creditsStuff[curSelected][0] == "SpecialThanks");
+
+		var isEmpty = (creditsStuff[curSelected][1] == "");
+		descText.visible = !isEmpty;
+		descBox.visible = !isEmpty;
+
+		descText.text = (manualText != "" ? manualText : creditsStuff[curSelected][1]);
+		if(change != 0 && onST) {
+			if(specialSection != null) descText.text = specialSection.groupList[specialSection.currentPerson][1];
 		}
 
-		descText.text = creditsStuff[curSelected][1];
 		descText.y = FlxG.height - descText.height + offsetThing - 60;
 
 		if(moveTween != null) moveTween.cancel();
@@ -247,5 +265,93 @@ class CreditsState extends MusicBeatState
 
 	private function unselectableCheck(num:Int):Bool {
 		return creditsStuff[num].length <= 1;
+	}
+}
+
+class SpecialThanks extends FlxTypedSpriteGroup<FlxSprite>
+{
+	public var currentPerson:Int = 0;
+
+	public var sprAttacher:FlxSprite;
+	public var stateGet:CreditsState;
+	public var blackBox:FlxSprite;
+
+	public var peopleGrp:FlxTypedSpriteGroup<Alphabet> = new FlxTypedSpriteGroup();
+
+	public var groupList:Array<Dynamic> = tjson.TJSON.parse(File.getContent(Paths.getLitePath("data/credits.json"))).specialthanks;
+
+	public function new(x:Float = 0, y:Float = 0)
+	{
+		super(x, y);
+
+		blackBox = new FlxSprite();
+		blackBox.makeGraphic(1, 1, FlxColor.BLACK);
+		blackBox.alpha = 0.6;
+		add(blackBox);
+
+		add(peopleGrp);
+
+		for(i => person in groupList) {
+			var nameSpr:Alphabet = new Alphabet(0, 0, person[0], true);
+			nameSpr.distancePerItem.x = 0;
+			nameSpr.targetY = i;
+			nameSpr.ID = i;
+			nameSpr.setScale(0.75, 0.75);
+			nameSpr.screenCenter();
+			nameSpr.y += blackBox.y + (90 * (i - (groupList.length / 2)));
+			peopleGrp.add(nameSpr);
+		}
+
+		blackBox.scale.set(peopleGrp.width + 100, peopleGrp.height + 100);
+		blackBox.updateHitbox();
+		blackBox.screenCenter();
+
+		for(i => nameSpr in peopleGrp.members) {
+			nameSpr.screenCenter();
+			nameSpr.y += blackBox.y + (90 * (i - (groupList.length / 2))) - 50;
+		}
+		// peopleGrp.y += 25;
+
+		changePerson();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+	
+		this.x = sprAttacher.x + sprAttacher.width;
+		this.y = sprAttacher.y;
+
+		if(stateGet != null && stateGet.onST) {
+			if(FlxG.keys.justPressed.UP || FlxG.keys.justPressed.W) changePerson(-1);
+			if(FlxG.keys.justPressed.DOWN || FlxG.keys.justPressed.S) changePerson(1);
+
+			if(FlxG.keys.justPressed.ENTER || FlxG.keys.justPressed.SPACE) {
+				if(groupList[currentPerson][2] != "" && groupList[currentPerson][2] != null) CoolUtil.browserLoad(groupList[currentPerson][2]);
+			}
+		}
+	}
+
+	function changePerson(change:Int = 0)
+	{
+		if(change != 0) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+
+		currentPerson += change;
+		if (currentPerson < 0)
+			currentPerson = peopleGrp.length - 1;
+		if (currentPerson >= peopleGrp.length)
+			currentPerson = 0;
+
+		for(i => person in peopleGrp.members) {
+			person.targetY = i - currentPerson;
+
+			if(person.ID == currentPerson) 
+				person.alpha = 1; 
+			else person.alpha = 0.5;
+		}
+
+		if(stateGet != null) {
+			stateGet.changeSelection(0, groupList[currentPerson][1]);
+		} 
 	}
 }
