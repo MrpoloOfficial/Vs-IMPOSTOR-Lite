@@ -1,4 +1,4 @@
-# Vs Impostor: Lite
+# Vs. Impostor: Lite
 
 ## Credits:
 * Jio - Director, Artist

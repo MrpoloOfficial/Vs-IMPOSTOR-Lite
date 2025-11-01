@@ -89,7 +89,7 @@ class MainMenuState extends MusicBeatState
 		logo.screenCenter(X);
 		add(logo);
 
-		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Lite Funkin: Impostor DEMO", 12);
+		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Vs. Impostor: Lite", 12);
 		fnfVer.scrollFactor.set();
 		fnfVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(fnfVer);

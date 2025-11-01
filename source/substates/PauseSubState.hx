@@ -316,7 +316,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
-					FlxG.camera.followLerp = 0;
+					if(FlxG.camera.cameraTween != null) FlxG.camera.cameraTween.active = false;
 			}
 		}
 	}

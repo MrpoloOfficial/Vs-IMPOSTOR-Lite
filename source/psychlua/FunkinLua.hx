@@ -465,7 +465,7 @@ class FunkinLua {
 				game.vocals.pause();
 				game.vocals.volume = 0;
 			}
-			FlxG.camera.followLerp = 0;
+			if(FlxG.camera.cameraTween != null) FlxG.camera.cameraTween.active = false;
 		});
 
 		Lua_helper.add_callback(lua, "loadGraphic", function(variable:String, image:String, ?gridX:Int = 0, ?gridY:Int = 0) {
@@ -811,7 +811,7 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "restartSong", function(?skipTransition:Bool = false) {
 			game.persistentUpdate = false;
-			FlxG.camera.followLerp = 0;
+			if(FlxG.camera.cameraTween != null) FlxG.camera.cameraTween.active = false;
 			PauseSubState.restartSong(skipTransition);
 			return true;
 		});
@@ -833,7 +833,7 @@ class FunkinLua {
 			PlayState.changedDifficulty = false;
 			PlayState.chartingMode = false;
 			game.transitioning = true;
-			FlxG.camera.followLerp = 0;
+			if(FlxG.camera.cameraTween != null) FlxG.camera.cameraTween.active = false;
 			Mods.loadTopMod();
 			return true;
 		});
@@ -1534,7 +1534,7 @@ class FunkinLua {
 			trace(e);
 			return;
 		}
-		trace('Lua loaded:' + scriptName);
+		trace('LOADED LUA FILE: [' + scriptName + "]");
 
 		call('onCreate', []);
 	}

@@ -110,8 +110,7 @@ class Main extends Sprite
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
 		#if !mobile
-		fpsVar = new FPSCounter(5, 3, 0xFFFFFF);
-		fpsVar.defaultTextFormat = new openfl.text.TextFormat(Paths.font("vcr.ttf"), 14, -1);
+		fpsVar = new FPSCounter(0, 0, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;

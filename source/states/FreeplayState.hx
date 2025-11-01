@@ -384,7 +384,7 @@ class FreeplayState extends MusicBeatState
 				curDifficulty = 1;
 				trace('Couldnt find file');
 			}*/
-			trace("Loading song: " + poop);
+			trace("PLAYING SONG: [" + poop + "]");
 
 			try
 			{
@@ -392,7 +392,7 @@ class FreeplayState extends MusicBeatState
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = 1;
 
-				trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
+				trace('PLAYING SONG FROM WEEK: [' + WeekData.getWeekFileName() + ']');
 				if(colorTween != null) {
 					colorTween.cancel();
 				}

@@ -60,7 +60,7 @@ class PsychCamera extends FlxCamera
 				}
 				
 				// without this we see weird behavior when switching to SCREEN_BY_SCREEN at arbitrary scroll positions
-				bindScrollPos(_scrollTarget);
+				// bindScrollPos(_scrollTarget);
 			}
 			else
 			{

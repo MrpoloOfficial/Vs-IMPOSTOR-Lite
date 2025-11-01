@@ -3,6 +3,7 @@ package backend;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.input.gamepad.FlxGamepadInputID;
+import flixel.util.FlxColor;
 
 import states.TitleState;
 
@@ -20,7 +21,7 @@ import states.TitleState;
 	public var splashAlpha:Float = 1;
 	public var lowQuality:Bool = false;
 	public var shaders:Bool = true;
-	public var cacheOnGPU:Bool = #if !switch false #else true #end; //From Stilic
+	public var cacheOnGPU:Bool = #if !switch true #else true #end; // From Stilic
 	public var framerate:Int = 60;
 	public var camZooms:Bool = true;
 	public var hideHud:Bool = false;

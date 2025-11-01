@@ -1,4 +1,4 @@
-THANK YOU FOR DOWNLOADING VS IMPOSTOR: LITE!!!
+THANK YOU FOR DOWNLOADING VS. IMPOSTOR: LITE!!!
 ______________________________________________
 
  __                 /                                  
