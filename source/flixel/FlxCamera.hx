@@ -1591,10 +1591,17 @@ class FlxCamera extends FlxBasic
 
 			var targetX = target.x - width / 2;
 			var targetY = target.y - height / 2;
+
+			// For some reason every easeFunction i tryed didnt look accurate, so i just made my own :fire:
+			function coolAssEaseFunc(t:Float):Float {
+				var easeIn = Math.pow(t, 1.4);
+				var boosted = easeIn * (1.0 + (1.0 - Math.abs(t * 2 - 1)) * 0.25);
+				return (1 - Math.pow(1 - boosted, 2.2));
+			}
 		
 			if (cameraTween != null) cameraTween.cancel();
 			if(smooth) {
-				cameraTween = FlxTween.tween(scroll, {x: targetX, y: targetY}, speed, {ease: FlxEase.sineInOut, onComplete: function(_) {
+				cameraTween = FlxTween.tween(scroll, {x: targetX, y: targetY}, speed, {ease: coolAssEaseFunc, onComplete: function(_) {
 					cameraTween = null;
 				}});
 			} else {
