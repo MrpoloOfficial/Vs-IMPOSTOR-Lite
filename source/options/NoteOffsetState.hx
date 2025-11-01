@@ -442,7 +442,7 @@ class NoteOffsetState extends MusicBeatState
 		{
 			// FlxG.camera.zoom = 1.15;
 			FlxTween.cancelTweensOf(FlxG.camera);
-			FlxTween.tween(FlxG.camera, {zoom: 1.1}, 0.04, {ease: FlxEase.cubeOut, onComplete: function(_) {
+			FlxTween.tween(FlxG.camera, {zoom: 1.04}, 0.12, {ease: FlxEase.cubeOut, onComplete: function(_) {
 				FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.circOut});
 			}});
 
