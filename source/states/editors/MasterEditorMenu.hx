@@ -12,10 +12,6 @@ class MasterEditorMenu extends MusicBeatState
 	var options:Array<String> = [
 		'Chart Editor',
 		'Character Editor',
-		'Week Editor',
-		'Menu Character Editor',
-		'Dialogue Editor',
-		'Dialogue Portrait Editor',
 		'Note Splash Debug'
 	];
 	private var grpTexts:FlxTypedGroup<Alphabet>;
@@ -27,7 +23,7 @@ class MasterEditorMenu extends MusicBeatState
 
 	override function create()
 	{
-		FlxG.camera.bgColor = FlxColor.BLACK;
+		// FlxG.camera.bgColor = FlxColor.BLACK;
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Editors Main Menu", null);
@@ -108,14 +104,6 @@ class MasterEditorMenu extends MusicBeatState
 					LoadingState.loadAndSwitchState(() -> new ChartingState(), false);
 				case 'Character Editor':
 					LoadingState.loadAndSwitchState(() -> new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
-				case 'Week Editor':
-					FlxG.switchState(() -> new WeekEditorState());
-				case 'Menu Character Editor':
-					FlxG.switchState(() -> new MenuCharacterEditorState());
-				case 'Dialogue Editor':
-					LoadingState.loadAndSwitchState(() -> new DialogueEditorState(), false);
-				case 'Dialogue Portrait Editor':
-					LoadingState.loadAndSwitchState(() -> new DialogueCharacterEditorState(), false);
 				case 'Note Splash Debug':
 					FlxG.switchState(() -> new NoteSplashDebugState());
 			}

@@ -138,7 +138,7 @@ class ControlsSubState extends MusicBeatSubstate
 					var isDefaultKey:Bool = (option[1] == defaultKey);
 					var isDisplayKey:Bool = (isCentered && !isDefaultKey);
 
-					var text:Alphabet = new Alphabet(200, 300, option[1], !isDisplayKey);
+					var text:Alphabet = new Alphabet(200-40, 300, option[1], !isDisplayKey);
 					text.isMenuItem = true;
 					text.changeX = false;
 					text.distancePerItem.y = 60;
@@ -189,7 +189,7 @@ class ControlsSubState extends MusicBeatSubstate
 				key = InputFormatter.getGamepadName((savKey[n] != null) ? savKey[n] : NONE);
 			}
 
-			var attach:Alphabet = new Alphabet(textX + 210, 248, key, false);
+			var attach:Alphabet = new Alphabet(textX + (210-40), 248, key, false);
 			attach.isMenuItem = true;
 			attach.changeX = false;
 			attach.distancePerItem.y = 60;

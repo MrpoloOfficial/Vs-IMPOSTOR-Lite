@@ -294,11 +294,11 @@ class FreeplayState extends MusicBeatState
 				portrait.scale.set(0.4, 0.4);
 				portrait.updateHitbox();
 				portrait.y = FlxG.height - portrait.height;
-				FlxTween.tween(portrait, {x: FlxG.width - portrait.width + 25, alpha: 1}, 0.6, {ease: FlxEase.quartOut});
+				FlxTween.tween(portrait, {x: FlxG.width - portrait.width + 25, alpha: 1}, 0.55, {ease: FlxEase.quartOut});
 			}
 		}
 
-		if (controls.BACK)
+		if (controls.BACK || FlxG.mouse.justPressedRight)
 		{
 			if (player.playingMusic)
 			{
@@ -508,7 +508,7 @@ class FreeplayState extends MusicBeatState
 		if(curPortrait != prevPortrait && isPortraitOn) {
             FlxTween.cancelTweensOf(portrait);
 			isPortraitOn = false;
-            FlxTween.tween(portrait, {x: FlxG.width + 25, alpha: 0}, 0.3);
+            FlxTween.tween(portrait, {x: FlxG.width + 25, alpha: 0}, 0.225);
 		}
 	}
 

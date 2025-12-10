@@ -144,7 +144,7 @@ class Mods
 		return null;
 	}
 
-	public static var updatedOnState:Bool = false;
+	public static var updatedOnState:Bool = true;
 	inline public static function parseList():ModsList {
 		if(!updatedOnState) updateModList();
 		var list:ModsList = {enabled: [], disabled: [], all: []};
@@ -211,7 +211,7 @@ class Mods
 			fileStr += values[0] + '|' + (values[1] ? '1' : '0');
 		}
 
-		File.saveContent('modsList.txt', fileStr);
+		// File.saveContent('modsList.txt', fileStr);
 		updatedOnState = true;
 		//trace('Saved modsList.txt');
 		#end

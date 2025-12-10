@@ -305,10 +305,11 @@ class SpecialThanks extends FlxTypedSpriteGroup<FlxSprite>
 		blackBox.scale.set(peopleGrp.width + 100, peopleGrp.height + 100);
 		blackBox.updateHitbox();
 		blackBox.screenCenter();
+		blackBox.y -= 50;
 
 		for(i => nameSpr in peopleGrp.members) {
 			nameSpr.screenCenter();
-			nameSpr.y += blackBox.y + (90 * (i - (groupList.length / 2))) - 50;
+			nameSpr.y += blackBox.y + (90 * (i - (groupList.length / 2))) - 55;
 		}
 		// peopleGrp.y += 25;
 

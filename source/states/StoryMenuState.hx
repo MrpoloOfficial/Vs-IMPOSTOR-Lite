@@ -346,24 +346,38 @@ class StoryMenuState extends MusicBeatState
 	function updateText()
 	{
 		var weekArray:Array<String> = loadedWeeks[curWeek].weekCharacters;
-
 		var leWeek:WeekData = loadedWeeks[curWeek];
 		var stringThing:Array<String> = [];
 		for (i in 0...leWeek.songs.length) {
 			stringThing.push(leWeek.songs[i][0]);
 		}
 
+		// This capitalization part looks rlly ugly but im still proud i made it to work :) -polo
+
 		txtTracklist.text = '';
-		for (i in 0...stringThing.length)
-		{
+		for (i in 0...stringThing.length) {
 			txtTracklist.text += CoolUtil.capitalize(stringThing[i]) + '\n';
-			txtTracklist.text = txtTracklist.text.charAt(0).toUpperCase() + txtTracklist.text.substr(1).toLowerCase();
-			if(txtTracklist.text.contains(" ")) {
-				txtTracklist.text = txtTracklist.text.split(" ").map(word -> {
-					return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-				}).join(" ");
+		}
+
+		var txtTracklistAll:Array<String> = txtTracklist.text.split('\n');
+		for(i => txt in txtTracklistAll) {
+			txt = txt.replace('-', ' ');
+			txt = txt.replace('_', ' ');
+			if(txt.contains(' ')) {
+				var nameStrings:Array<String> = txt.split(' ');
+				var txtResult:String = '';
+
+				for(str in nameStrings) {
+					var str2:String = CoolUtil.capitalize(str);
+					txtResult += str2 + ' ';
+				}
+				txtTracklistAll[i] = txtResult;
 			}
 		}
+
+		txtTracklist.text = '';
+		for(txt in txtTracklistAll)
+			txtTracklist.text += txt + '\n';
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(loadedWeeks[curWeek].fileName, curDifficulty);

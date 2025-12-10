@@ -5,6 +5,8 @@ import objects.Character;
 import psychlua.LuaUtils;
 import psychlua.CustomSubstate;
 
+import flixel.effects.particles.FlxEmitter;
+
 #if LUA_ALLOWED
 import psychlua.FunkinLua;
 #end
@@ -113,6 +115,8 @@ class HScript extends SScript
 		#if flxanimate
 		set('FlxAnimate', FlxAnimate);
 		#end
+
+		set('FlxTypedEmitter', FlxTypedEmitter);
 
 		// Functions & Variables
 		set('setVar', function(name:String, value:Dynamic) {

@@ -11,7 +11,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		title = 'Graphics';
 		rpcTitle = 'Editing Graphics'; //for Discord Rich Presence
 
-		boyfriend = new Character(840, 170, 'bf', true);
+		boyfriend = new Character(840, 350, 'bf', true);
 		boyfriend.setGraphicSize(Std.int(boyfriend.width * 0.75));
 		boyfriend.updateHitbox();
 		boyfriend.dance();

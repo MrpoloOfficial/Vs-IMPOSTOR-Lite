@@ -22,7 +22,6 @@ import openfl.events.KeyboardEvent;
 import haxe.Json;
 
 import cutscenes.CutsceneHandler;
-import cutscenes.DialogueBoxPsych;
 import cutscenes.DialogueLiteBox;
 
 import states.StoryMenuState;
@@ -918,37 +917,6 @@ class PlayState extends MusicBeatState
 	}
 
 	var dialogueCount:Int = 0;
-	public var psychDialogue:DialogueBoxPsych;
-	//You don't have to add a song, just saying. You can just do "startDialogue(DialogueBoxPsych.parseDialogue(Paths.json(songName + '/dialogue')))" and it should load dialogue.json
-	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
-	{
-		// TO DO: Make this more flexible, maybe?
-		if(psychDialogue != null) return;
-
-		if(dialogueFile.dialogue.length > 0) {
-			inCutscene = true;
-			psychDialogue = new DialogueBoxPsych(dialogueFile, song);
-			psychDialogue.scrollFactor.set();
-			if(endingSong) {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					endSong();
-				}
-			} else {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					startCountdown();
-				}
-			}
-			psychDialogue.nextDialogueThing = startNextDialogue;
-			psychDialogue.skipDialogueThing = skipDialogue;
-			psychDialogue.cameras = [camHUD];
-			add(psychDialogue);
-		} else {
-			FlxG.log.warn('Your dialogue file is badly formatted!');
-			startAndEnd();
-		}
-	}
 
 	var startTimer:FlxTimer;
 	var finishTimer:FlxTimer = null;
@@ -2030,7 +1998,7 @@ class PlayState extends MusicBeatState
 				if(flValue2 == null || flValue2 <= 0) flValue2 = 0.6;
 
 				if(value != 0) {
-					if(dad.curCharacter.startsWith('gf')) { //Tutorial GF is actually Dad! The GF is an imposter!! ding ding ding ding ding ding ding, dindinding, end my suffering
+					if(dad.curCharacter.startsWith('gf')) {
 						dad.playAnim('cheer', true);
 						dad.specialAnim = true;
 						dad.heyTimer = flValue2;
@@ -2055,7 +2023,13 @@ class PlayState extends MusicBeatState
 					if(flValue1 == null) flValue1 = 0.015;
 					if(flValue2 == null) flValue2 = 0.03;
 
-					FlxG.camera.zoom += flValue1;
+					if(mainCamTwn != null) mainCamTwn.cancel();
+					camZoomingBeat = false;
+					mainCamTwn = FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + flValue1}, 0.12, {ease: FlxEase.cubeOut, onComplete: function(_) {
+						camZoomingBeat = true;
+					}});
+
+					// FlxG.camera.zoom += flValue1;
 					camHUD.zoom += flValue2;
 				}
 
@@ -2268,15 +2242,16 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+		var isDad:Bool = (SONG.notes[sec].mustHitSection != true);
+
 		if(scoreTxt != null && dad != null && boyfriend != null) {
-			if(!SONG.notes[curSection].mustHitSection) scoreTxt.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+			if(isDad) scoreTxt.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
 			else scoreTxt.color = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
 		}
 
-		var isDad:Bool = (SONG.notes[sec].mustHitSection != true);
 		moveCamera(isDad);
 
-		FlxG.camera.smoothFollow(camFollow, true, 1.5 * cameraSpeed * playbackRate);
+		FlxG.camera.smoothFollow(camFollow, true, 1.3 * cameraSpeed * playbackRate);
 
 		callOnScripts('onMoveCamera', [isDad ? 'dad' : 'boyfriend']);
 	}

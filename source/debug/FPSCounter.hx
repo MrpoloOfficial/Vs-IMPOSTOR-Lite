@@ -51,7 +51,7 @@ class FPSCounter extends Sprite
 		text.defaultTextFormat = new TextFormat(Paths.font("vcr.ttf"), 14, color);
 		text.autoSize = LEFT;
 		text.multiline = true;
-		text.text = "FPS: ";
+		text.text = "";
 
 		times = [];
 

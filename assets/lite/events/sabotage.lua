@@ -8,7 +8,7 @@ end
 
 function onEvent(n,v1,v2)
 	if n == 'sabotage' then
-		setProperty('flash.alpha', 0.6)
+		setProperty('flash.alpha', 0.4)
 		doTweenAlpha('flTw', 'flash', 0.00001, v1, 'linear')
 	end
 end

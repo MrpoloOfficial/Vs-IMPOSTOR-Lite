@@ -82,7 +82,7 @@ class PauseSubState extends MusicBeatSubstate
 		bar.x -= bar.width;
 		add(bar);
 
-		FlxTween.tween(bar, {x: 0}, 0.2, {ease: FlxEase.smootherStepInOut, startDelay: 0.15});
+		FlxTween.tween(bar, {x: 0}, 0.25, {ease: FlxEase.smootherStepInOut/*, startDelay: 0.15*/});
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
 		levelInfo.scrollFactor.set();
@@ -314,6 +314,7 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.switchState(() -> new FreeplayState());
 
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					Conductor.bpm = 109;
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 					if(FlxG.camera.cameraTween != null) FlxG.camera.cameraTween.active = false;

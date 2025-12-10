@@ -27,6 +27,10 @@ class SelectCreditsState extends MusicBeatState
         bg.screenCenter();
 		add(bg);
 
+        var titleTxt = new FlxText(0, 1, FlxG.width, "Select a Team!", 40);
+		titleTxt.setFormat(Paths.font("vcr.ttf"), 40, FlxColor.BLACK, CENTER);
+		add(titleTxt);
+
         logosGrp = new FlxTypedGroup<FlxSprite>();
 		add(logosGrp);
 
@@ -51,23 +55,24 @@ class SelectCreditsState extends MusicBeatState
     {
         if(!selected)
         {
+            if(controls.UI_LEFT_P)
+				changeItem(-1);
+			if(controls.UI_RIGHT_P)
+				changeItem(1);
+
+            if(FlxG.mouse.justMoved) {
+                FlxG.mouse.visible = true;
+            }
+
             logosGrp.forEach(function(spr:FlxSprite) {
-                if(FlxG.mouse.overlaps(spr)) {
+                if(FlxG.mouse.overlaps(spr) && FlxG.mouse.visible)
+                {
                     prevCurCredit = curCredit;
                     curCredit = spr.ID;
-                    if(prevCurCredit != curCredit) {
-                        FlxG.sound.play(Paths.sound('scrollMenu'));
-                    }
-                    if(FlxG.mouse.justPressed) {
-                        enterCredits();
-                    }
+                    if(prevCurCredit != curCredit) FlxG.sound.play(Paths.sound('scrollMenu'));
+                    if(FlxG.mouse.justPressed) enterCredits();
                 }
             });
-
-            if (controls.UI_LEFT_P)
-				changeItem(-1);
-			if (controls.UI_RIGHT_P)
-				changeItem(1);
 
             logosGrp.forEach(function(spr:FlxSprite) 
             {
@@ -86,7 +91,7 @@ class SelectCreditsState extends MusicBeatState
             if (controls.ACCEPT)
                 enterCredits();
             
-            if (controls.BACK)
+            if (controls.BACK || FlxG.mouse.justPressedRight)
             {
                 FlxG.mouse.visible = false;
                 FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -116,9 +121,9 @@ class SelectCreditsState extends MusicBeatState
         if(huh != 0) FlxG.sound.play(Paths.sound('scrollMenu'));
         prevCurCredit = curCredit;
         curCredit += huh;
-        if (curCredit >= teamsList.length)
-            curCredit = 0;
-        if (curCredit < 0)
-            curCredit = teamsList.length - 1;
+        if (curCredit >= teamsList.length) curCredit = 0;
+        if (curCredit < 0) curCredit = teamsList.length - 1;
+
+        FlxG.mouse.visible = false;
     }
 }

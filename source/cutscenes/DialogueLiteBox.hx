@@ -98,8 +98,8 @@ class DialogueLiteBox extends FlxSpriteGroup
 					if (!isEnding)
 					{
 						isEnding = true;
-						if(dialogueMusic != null) dialogueMusic.destroy();
-						if(tabletGrp != null) {
+						// if(dialogueMusic != null) dialogueMusic.destroy();
+						/*if(tabletGrp != null) {
 							tabletGrp.clear();
 							remove(tabletGrp);
 						}
@@ -107,18 +107,22 @@ class DialogueLiteBox extends FlxSpriteGroup
 							for(box in boxArray) {
 								box.visible = false;
 							}
-						}
-						FlxTween.tween(tablet, {y: FlxG.height + 200}, 0.6, {ease: FlxEase.cubeOut});
-						new FlxTimer().start(0.1, function(tmr:FlxTimer)
+						}*/
+						// FlxTween.tween(tablet, {y: FlxG.height + 200}, 0.6, {ease: FlxEase.cubeOut});
+
+						FlxTween.cancelTweensOf(dialogueMusic);
+						FlxTween.tween(dialogueMusic, {volume: 0}, 0.6, {ease: FlxEase.cubeOut, onComplete: function(_) {
+							dialogueMusic.destroy();
+						}});
+						new FlxTimer().start(0.1, function(_)
 						{
 							//if(tablet != null) tablet.alpha -= 1 / 5;
 							if(bgFade != null) bgFade.alpha -= 1 / 5 * 0.7;
-							if(portraitLeft != null) portraitLeft.visible = false;
-							if(portraitMiddle != null) portraitMiddle.visible = false;
-							if(portraitRight != null) portraitRight.visible = false;
 						}, 5);
 
-						new FlxTimer().start(0.6, function(tmr:FlxTimer)
+						FlxTween.tween(cameras[0], {"scroll.x": FlxG.height}, 0.6, {ease: FlxEase.cubeOut});
+
+						new FlxTimer().start(0.6, function(_)
 						{
 							finishThing();
 							kill();
@@ -146,7 +150,7 @@ class DialogueLiteBox extends FlxSpriteGroup
 		refreshPortraitInfo();
 		refreshStuff(firstTime);
 		FlxG.sound.play(Paths.sound('dialogue'), 1);
-		trace(curType, curCharacter, curAnim, dialogueList[0]);
+		// trace(curType, curCharacter, curAnim, dialogueList[0]);
 	}
 
 	function refreshDialog():Void

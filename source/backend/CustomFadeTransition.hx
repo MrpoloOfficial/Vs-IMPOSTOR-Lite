@@ -10,7 +10,7 @@ class CustomFadeTransition extends MusicBeatSubstate
 	static var whiteCircle:FlxSprite;
 	static var bf:FlxSprite;
 
-	public var camHUD:FlxCamera;
+	public var camTrans:FlxCamera;
 	public function new(duration:Float, isTransIn:Bool)
 	{
 		this.duration = duration;
@@ -20,17 +20,16 @@ class CustomFadeTransition extends MusicBeatSubstate
 
 	override function create()
 	{
-		camHUD = new FlxCamera();
-		camHUD.bgColor.alpha = 0;
-		FlxG.cameras.add(camHUD, false);
+		camTrans = new FlxCamera();
+		camTrans.bgColor.alpha = 0;
+		FlxG.cameras.add(camTrans, false);
 
-		cameras = [FlxG.cameras.list[FlxG.cameras.list.length-1]];
+		cameras = [camTrans];
 		whiteCircle = new FlxSprite().loadGraphic(Paths.image('switchState'));
 		whiteCircle.antialiasing = false;
 		whiteCircle.updateHitbox();
 		whiteCircle.screenCenter();
 		whiteCircle.antialiasing = false;
-		whiteCircle.cameras = [camHUD];
 		add(whiteCircle);
 
 		bf = new FlxSprite();
@@ -43,14 +42,12 @@ class CustomFadeTransition extends MusicBeatSubstate
 		bf.screenCenter(Y);
 		bf.x -= bf.width;
 		bf.scale.set(1.5, 1.5);
-		bf.cameras = [camHUD];
 		add(bf);
 
 		if(!isTransIn) {
 			bf.x -= bf.width;
 			whiteCircle.scale.set(0, 0);
-		}
-		else {
+		} else {
 			bf.x = (FlxG.width / 2) - (bf.width / 2);
 			whiteCircle.scale.set(7, 7);
 		}
@@ -69,8 +66,6 @@ class CustomFadeTransition extends MusicBeatSubstate
 			FlxTween.tween(whiteCircle.scale, {x: 0.001, y: 0.001}, duration, {ease: FlxEase.quadIn, onComplete: function (twn:FlxTween)
 				{
 					close();
-					if(finishCallback != null) finishCallback();
-					finishCallback = null;
 				}
 			});			
 		}

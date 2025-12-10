@@ -1583,7 +1583,7 @@ class FlxCamera extends FlxBasic
 
 	public var cameraTween:FlxTween = null;
 	public var lastTargetPos:FlxPoint = FlxPoint.get();
-	public function smoothFollow(target:FlxObject, smooth:Bool = false, ?speed:Float, ?elapsed:Float)
+	public function smoothFollow(target:FlxObject, smooth:Bool = false, ?speed:Float)
 	{
 		if(lastTargetPos.x != target.x || lastTargetPos.y != target.y)
 		{
@@ -1599,7 +1599,7 @@ class FlxCamera extends FlxBasic
 				return (1 - Math.pow(1 - boosted, 2.2));
 			}
 		
-			if (cameraTween != null) cameraTween.cancel();
+			if(cameraTween != null) cameraTween.cancel();
 			if(smooth) {
 				cameraTween = FlxTween.tween(scroll, {x: targetX, y: targetY}, speed, {ease: coolAssEaseFunc, onComplete: function(_) {
 					cameraTween = null;

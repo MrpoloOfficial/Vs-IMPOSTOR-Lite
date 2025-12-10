@@ -41,7 +41,7 @@ class StrumNote extends FlxSprite
 			{
 				rgbShader.r = arr[0];
 				rgbShader.g = arr[1];
-				rgbShader.b = arr[2];
+				rgbShader.b = arr[1];
 			}
 		}
 

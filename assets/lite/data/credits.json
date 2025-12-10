@@ -1,40 +1,43 @@
 {
-	"credits": [
-		["lite", [-300, 0], [0.75, 0.75], [
-                ["choma",			"Description 1 here",			"",		"FFFFFF"],
-                ["bpforest",		"Description 2 here",			"",		"FFFFFF"],
-                ["gamemon",		    "Description 3 here",			"",		"FFFFFF"],
-                ["mayagi",		    "Description 4 here",			"",		"FFFFFF"],
-                ["ratang",			"Description 5 here",			"",		"FFFFFF"],
-                ["atin",			"Description 6 here",			"",		"FFFFFF"]
+    "credits": [
+        [
+            "lite", [-300, 0], [0.7, 0.7],
+            [
+                ["choma",        "Description 1 here", "", "FFFFFF"],
+                ["bpforest",     "Description 2 here", "", "FFFFFF"],
+                ["gamemon",      "Description 3 here", "", "FFFFFF"],
+                ["mayagi",       "Description 4 here", "", "FFFFFF"],
+                ["ratang",       "Description 5 here", "", "FFFFFF"],
+                ["atin",         "Description 6 here", "", "FFFFFF"]
             ]
         ],
-        ["liteImp", [300, 0], [0.4, 0.4], [
-                ["upqgg",			"",			"",		"FFFFFF"],
-                ["Jio",			    "",			"",		"FFFFFF"],
-                ["Lego",			"",			"",		"FFFFFF"],
-                ["gtm",				"Look out, here comes Tom!\n조심해! 톰온다!",			"",		"FFFFFF"],
-                ["Alphatic",			"i practically carried the mod music wise. you're welcome jio\n난 솔직히 말하자면 노래로 모드를 만들지. 천만해 Jio.",			"",		"FFFFFF"],
-                ["COrangatang",		"",			"",		"FFFFFF"],
-                ["Snuts",           "i was forced to use soundfonts very often my trance brain cant handle this shit\n난 사운드폰트를 맨날 써야해서 내 트랜스 뇌가 이걸 감당할 수 없어.",			"",		"FFFFFF"],
-                ["JustAGuy",		"Me when the when the me when the when me thwne when the among us\n내가 할때, 내가 할때, 내가 할때, 내가 할때, 내가 할때, '어몽어스' 할 때",			"",		"FFFFFF"],
-                ["Beariano",			    "",			"",		"FFFFFF"],
-                ["Mrpolo",			"joined fnf around 4 years ago, been working on this mod for 20 percent of those years\n난 4년전에 FNF에 들어왔고, 이번년에 이곳에서 20%를 일했지",			"",		"FFFFFF"],
-                ["L1ghtlyVun",			    "",			"",		"FFFFFF"],
-                ["SlideOfBread",			    "",			"",		"FFFFFF"],
-                ["Steginite",			    "",			"",		"FFFFFF"],
-                ["Red",		        "hi i'm a Red Impostor, i've coded this mod a bit, and i'm happy to participate in it.",			"",		"FFFFFF"],
-                ["SpecialThanks", "_", "", "FFFFFF"]
+        [
+            "liteImp", [275, 0], [0.475, 0.475],
+            [
+                ["upqgg",        "", "", "FFFFFF"],
+                ["Jio",          "", "", "FFFFFF"],
+                ["Lego",         "", "", "FFFFFF"],
+                ["gtm",          "Look out, here comes Tom!\n조심해! 톰온다!", "", "FFFFFF"],
+                ["Alphatic",     "i practically carried the mod music wise. you're welcome jio\n난 솔직히 말하자면 노래로 모드를 만들지. 천만해 Jio.", "", "FFFFFF"],
+                ["COrangatang",  "", "", "FFFFFF"],
+                ["Snuts",        "i was forced to use soundfonts very often my trance brain cant handle this shit\n난 사운드폰트를 맨날 써야해서 내 트랜스 뇌가 이걸 감당할 수 없어.", "", "FFFFFF"],
+                ["JustAGuy",     "Me when the when the me when the when me thwne when the among us\n내가 할때, 내가 할때, 내가 할때, 내가 할때, 내가 할때, '어몽어스' 할 때", "", "FFFFFF"],
+                ["Beariano",     "", "", "FFFFFF"],
+                ["Mrpolo",       "joined fnf around 4 years ago, been working on this mod for 20 percent of those years\n난 4년전에 FNF에 들어왔고, 이번년에 이곳에서 20%를 일했지", "", "FFFFFF"],
+                ["L1ghtlyVun",   "", "", "FFFFFF"],
+                ["SlideOfBread", "", "", "FFFFFF"],
+                ["Steginite",    "", "", "FFFFFF"],
+                ["SpecialThanks","_", "", "FFFFFF"]
             ]
         ]
-	],
-	"specialthanks": [
-		["Kdead", "Letting us use his red icons as reference", ""],
-		["AWHNathan", "Charting Support", ""],
-		["Choma41", "Composing Meltdown Lite (Commission)", ""],
-		["Ra_TanG", "Giving us advice on Lite Funkin's artstyle", ""],
-		["Impostorm", "Team behind the original Vs. Impostor V4", ""],
-		["Innersloth", "Creators of Among us", ""],
-		["Moxt", "Moxt", ""]
-	]
+    ],
+    "specialthanks": [
+        ["Kdead", "Letting us use his red icons as reference", ""],
+        ["AWHNathan", "Charting Support", ""],
+        ["Choma41", "Composing Meltdown Lite (Commission)", ""],
+        ["Ra_TanG", "Giving us advice on Lite Funkin's artstyle", ""],
+        ["Impostorm", "Team behind the original Vs. Impostor V4", ""],
+        ["Innersloth", "Creators of Among us", ""],
+        ["Moxt", "Moxt", ""]
+    ]
 }

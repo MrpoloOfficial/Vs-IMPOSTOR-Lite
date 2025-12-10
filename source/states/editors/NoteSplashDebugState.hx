@@ -472,6 +472,7 @@ class NoteSplashDebugState extends MusicBeatState
 
 	override function destroy()
 	{
+		FlxG.camera.bgColor = 0xFFFFFFFF;
 		super.destroy();
 	}
 }

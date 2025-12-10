@@ -15,6 +15,7 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
+		'shop',
 		'credits',
 		'options'
 	];
@@ -68,13 +69,13 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(0, 300 + (i * 125));
+			var menuItem:FlxSprite = new FlxSprite(0, 275 + (i * 112.5));
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu');
 			menuItem.animation.addByPrefix('idle', optionShit[i], 24);
 			menuItem.animation.addByPrefix('selected', "sel_" + optionShit[i], 24);
 			menuItem.animation.play('idle');
 			menuItem.antialiasing = false;
-			menuItem.scale.set(0.7, 0.7);
+			menuItem.scale.set(0.65, 0.65);
 			menuItems.add(menuItem);
 			menuItem.updateHitbox();
 			menuItem.screenCenter(X);
@@ -82,7 +83,7 @@ class MainMenuState extends MusicBeatState
 		}
 		menuItems.members[curSelected].alpha = 1;
 
-		var logo:FlxSprite = new FlxSprite(0, 25).loadGraphic(Paths.image('title/logo'));
+		var logo:FlxSprite = new FlxSprite(0, 10).loadGraphic(Paths.image('title/logo'));
 		logo.antialiasing = false;
 		logo.scale.set(0.5, 0.5);
 		logo.updateHitbox();
@@ -118,11 +119,10 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_UP_P)
 				changeItem(-1);
-
 			if (controls.UI_DOWN_P)
 				changeItem(1);
 
-			if (controls.BACK)
+			if (controls.BACK || FlxG.mouse.justPressedRight)
 			{
 				selectedSomethin = true;
 				FlxG.sound.play(Paths.sound('cancelMenu'));

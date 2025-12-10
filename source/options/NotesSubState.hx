@@ -55,7 +55,7 @@ class NotesSubState extends MusicBeatSubstate
 		#end
 		
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('sketch2'));
-		bg.color = 0xFFEA71FD;
+		bg.color = 0xFFea71fd;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, 0);
@@ -68,7 +68,7 @@ class NotesSubState extends MusicBeatSubstate
 		grid.scrollFactor.set(0, 0);
 		add(grid);
 
-		modeBG = new FlxSprite(215, 85).makeGraphic(315, 115, FlxColor.BLACK);
+		modeBG = new FlxSprite(215+60, 85).makeGraphic(Std.int(315-120), 115, FlxColor.BLACK);
 		modeBG.visible = false;
 		modeBG.alpha = 0.4;
 		add(modeBG);
@@ -94,7 +94,7 @@ class NotesSubState extends MusicBeatSubstate
 		var text:Alphabet = new Alphabet(50, 86, 'CTRL', false);
 		text.alignment = CENTERED;
 		text.setScale(0.4);
-		//add(text);
+		// add(text);
 
 		copyButton = new FlxSprite(760, 50).loadGraphic(Paths.image('noteColorMenu/copy'));
 		copyButton.alpha = 0.6;
@@ -127,6 +127,7 @@ class NotesSubState extends MusicBeatSubstate
 		colorWheelSelector.offset.set(8, 8);
 		colorWheelSelector.alpha = 0.6;
 		add(colorWheelSelector);
+		colorWheelSelector.scrollFactor.set(1, 1);
 
 		var txtX = 980;
 		var txtY = 90;
@@ -171,7 +172,8 @@ class NotesSubState extends MusicBeatSubstate
 		controllerPointer.visible = controls.controllerMode;
 		_lastControllerMode = controls.controllerMode;
 
-		FlxG.camera.scroll.x = 60;
+		FlxG.camera.scroll.x = 75;
+		updateColors();
 	}
 
 	function updateTip()
@@ -342,7 +344,7 @@ class NotesSubState extends MusicBeatSubstate
 			{
 				Clipboard.text = getShaderColor().toHexString(false, false);
 				FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-				trace('copied: ' + Clipboard.text);
+				// trace('copied: ' + Clipboard.text);
 			}
 			hexTypeNum = -1;
 		}
@@ -484,9 +486,9 @@ class NotesSubState extends MusicBeatSubstate
 					{
 						case 0:
 							getShader().r = strumRGB.r = color;
+						// case 1:
+						// 	getShader().g = strumRGB.g = color;
 						case 1:
-							getShader().g = strumRGB.g = color;
-						case 2:
 							getShader().b = strumRGB.b = color;
 					}
 					dataArray[curSelectedNote][i] = color;
@@ -516,7 +518,7 @@ class NotesSubState extends MusicBeatSubstate
 	}
 	function pointerFlxPoint():FlxPoint
 	{
-		if (!controls.controllerMode) return FlxG.mouse.getScreenPosition();
+		if (!controls.controllerMode) return FlxPoint.get(FlxG.mouse.x, FlxG.mouse.y);
 		return controllerPointer.getScreenPosition();
 	}
 
@@ -540,8 +542,8 @@ class NotesSubState extends MusicBeatSubstate
 	function changeSelectionMode(change:Int = 0) {
 		curSelectedMode += change;
 		if (curSelectedMode < 0)
-			curSelectedMode = 2;
-		if (curSelectedMode >= 3)
+			curSelectedMode = 1;
+		if (curSelectedMode > 1)
 			curSelectedMode = 0;
 
 		modeBG.visible = true;
@@ -619,9 +621,9 @@ class NotesSubState extends MusicBeatSubstate
 		//add(skinNote);
 
 		var res:Int = !onPixel ? 160 : 17;
-		for (i in 0...3)
+		for (i in 0...2)
 		{
-			var newNote:FlxSprite = new FlxSprite(230 + (100 * i), 100).loadGraphic(Paths.image('noteColorMenu/' + (!onPixel ? 'note' : 'notePixel')), true, res, res);
+			var newNote:FlxSprite = new FlxSprite((230 + 60) + (100 * i), 100).loadGraphic(Paths.image('noteColorMenu/' + (!onPixel ? 'note' : 'notePixel')), true, res, res);
 			newNote.antialiasing = ClientPrefs.data.antialiasing;
 			newNote.setGraphicSize(85);
 			newNote.updateHitbox();
@@ -692,7 +694,7 @@ class NotesSubState extends MusicBeatSubstate
 		if(wheelColor.brightness != 0)
 		{
 			var hueWrap:Float = wheelColor.hue * Math.PI / 180;
-			colorWheelSelector.x += (Math.sin(hueWrap) * colorWheel.width/2 * wheelColor.saturation) + 60;
+			colorWheelSelector.x += (Math.sin(hueWrap) * colorWheel.width/2 * wheelColor.saturation);
 			colorWheelSelector.y -= Math.cos(hueWrap) * colorWheel.height/2 * wheelColor.saturation;
 		}
 		colorGradientSelector.y = colorGradient.y + colorGradient.height * (1 - color.brightness);
@@ -702,9 +704,9 @@ class NotesSubState extends MusicBeatSubstate
 		{
 			case 0:
 				getShader().r = strumRGB.r = color;
+			// case 1:
+			// 	getShader().g = strumRGB.g = color;
 			case 1:
-				getShader().g = strumRGB.g = color;
-			case 2:
 				getShader().b = strumRGB.b = color;
 		}
 	}

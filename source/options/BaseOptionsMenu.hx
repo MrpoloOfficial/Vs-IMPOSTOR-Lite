@@ -63,7 +63,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		titleText.alpha = 0.4;
 		add(titleText);
 
-		descText = new FlxText(50, 600, 1180, "", 32);
+		descText = new FlxText(50, 600, 1100, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
@@ -71,7 +71,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		for (i in 0...optionsArray.length)
 		{
-			var optionText:Alphabet = new Alphabet(290, 260, optionsArray[i].name, false);
+			var optionText:Alphabet = new Alphabet(290, 360, optionsArray[i].name, false);
 			optionText.isMenuItem = true;
 			/*optionText.forceX = 300;
 			optionText.yMult = 90;*/
@@ -479,7 +479,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		descText.text = optionsArray[curSelected].description;
 		descText.screenCenter(Y);
-		descText.y += 270;
+		descText.y += 370;
 
 		var bullShit:Int = 0;
 

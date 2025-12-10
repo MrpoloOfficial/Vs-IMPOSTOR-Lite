@@ -18,10 +18,12 @@ class MusicBeatState extends FlxUIState
 	}
 	var _psychCameraInitialized:Bool = true;
 	
-	var cursorSprite:FlxSprite = new FlxSprite();
-	override function create() {
-		cursorSprite.loadGraphic(Paths.image('cursor'));
+	override function create()
+	{
+		var cursorSprite:FlxSprite = new FlxSprite().loadGraphic(Paths.image('cursor'));
 		FlxG.mouse.load(cursorSprite.pixels);
+		FlxG.mouse.cursor.pixelSnapping = "always";
+		FlxG.mouse.cursor.smoothing = false;
 
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 		#if MODS_ALLOWED Mods.updatedOnState = false; #end

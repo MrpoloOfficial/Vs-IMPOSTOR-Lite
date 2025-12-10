@@ -11,7 +11,7 @@ function onCreatePost()
 			var spaceInf:FlxBackdrop = new FlxBackdrop(Paths.image("bg/polus/stars"));
 			spaceInf.setPosition(-1460, -1200);
 			spaceInf.scale.set(2.2, 2.2);
-			//spaceInf.scrollFactor.set(1.4, 1.4);
+			// spaceInf.scrollFactor.set(0.8, 0.8);
 			addBehindGF(spaceInf);
     		]]);
     	end
@@ -53,8 +53,8 @@ function onSongStart()
 end
 
 function onStepHit()
-	if isSongSM and curStep == 30 then
-		doTweenY('tweenY', 'camGame.scroll', 0, 9.5, 'quadInOut');
+	if isSongSM and curStep == 2 then
+		doTweenY('tweenY', 'camGame.scroll', 0, 11, 'quadInOut');
 	elseif isSongSM and curStep == 112 then
 		doTweenAlpha('tweenAlpha', 'camHUD', 1, 1);
 	elseif isSongSM and curStep == 128 then
