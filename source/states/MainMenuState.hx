@@ -131,6 +131,11 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
+				if(optionShit[curSelected] == 'shop') {
+					FlxG.sound.play(Paths.sound('cancelMenu'));
+					return;
+				}
+
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				selectedSomethin = true;
 				FlxFlicker.flicker(menuItems.members[curSelected], 1, 0.06, false, false, function(flick:FlxFlicker)
@@ -141,6 +146,8 @@ class MainMenuState extends MusicBeatState
 							FlxG.switchState(() -> new StoryMenuState());
 						case 'freeplay':
 							FlxG.switchState(() -> new FreeplayState());
+						case 'shop':
+							selectedSomethin = false;
 						case 'credits':
 							FlxG.switchState(() -> new SelectCreditsState());
 						case 'options':

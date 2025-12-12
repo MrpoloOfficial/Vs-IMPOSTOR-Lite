@@ -1,25 +1,24 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "idle",
-			"indices": [],
-			"name": "idle"
+			"fps": 12,
+			"name": "idle",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "fu",
+			"loop": false,
 			"fps": 10,
-			"name": "fricku",
+			"anim": "fu",
 			"indices": [
 				0,
 				1,
@@ -44,7 +43,8 @@
 				2,
 				2,
 				2
-			]
+			],
+			"name": "fricku"
 		},
 		{
 			"offsets": [
@@ -54,15 +54,19 @@
 			"indices": [
 				0,
 				1,
+				1,
 				2,
-				3,
-				3,
-				3,
-				3,
-				3,
-				3,
-				3,
-				3
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2
 			],
 			"fps": 12,
 			"anim": "jump",

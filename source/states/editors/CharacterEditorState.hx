@@ -1042,27 +1042,17 @@ class CharacterEditorState extends MusicBeatState
 		}
 	}
 
-	final assetFolder = '';  //load from assets/week1/
 	inline function loadBG()
 	{
-		var lastLoaded = Paths.currentLevel;
-		Paths.currentLevel = assetFolder;
-
-		/////////////
-		// bg data //
-		/////////////
-		var bg:BGSprite = new BGSprite('stagefront', -1460, -1200, 1, 1);
+		var bg:BGSprite = new BGSprite('bg/stage/stage', -1460, -1200, 1, 1);
 		bg.scale.set(2.2, 2.2);
 		bg.updateHitbox();
+		bg.antialiasing = false;
 		add(bg);
 
-		dadPosition.set(100, 100);
-		bfPosition.set(770, 100);
-		/////////////
-
-		Paths.currentLevel = lastLoaded;
+		dadPosition.set(-500, 120);
+		bfPosition.set(420, 120);
 	}
-
 
 	inline function updatePointerPos(?snap:Bool = true)
 	{

@@ -218,7 +218,7 @@ class PixelSplashShaderRef {
 			{
 				shader.r.value[i] = tempShader.shader.r.value[i];
 				// shader.g.value[i] = tempShader.shader.b.value[i];
-				shader.g.value[i] = [255, 255, 255];
+				shader.g.value[i] = [255, 255, 255][i];
 				shader.b.value[i] = tempShader.shader.b.value[i];
 			}
 			shader.mult.value[0] = tempShader.shader.mult.value[0];

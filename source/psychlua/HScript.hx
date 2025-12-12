@@ -33,7 +33,7 @@ class HScript extends SScript
 		var hs:HScript = try parent.hscript catch (e) null;
 		if(hs == null)
 		{
-			trace('initializing haxe interp for: ${parent.scriptName}');
+			trace('LOLADED HX FILE: ${parent.scriptName}');
 			parent.hscript = new HScript(parent, code, varsToBring);
 		}
 		else

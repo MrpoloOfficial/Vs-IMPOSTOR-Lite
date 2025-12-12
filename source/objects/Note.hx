@@ -158,7 +158,7 @@ class Note extends FlxSprite
 		{
 			rgbShader.r = arr[0];
 			rgbShader.g = arr[1];
-			rgbShader.b = arr[1];
+			rgbShader.b = arr[2];
 		}
 	}
 
@@ -309,7 +309,7 @@ class Note extends FlxSprite
 			{
 				newRGB.r = arr[0];
 				newRGB.g = arr[1];
-				newRGB.b = arr[1];
+				newRGB.b = arr[2];
 			}
 		}
 		return globalRgbShaders[noteData];

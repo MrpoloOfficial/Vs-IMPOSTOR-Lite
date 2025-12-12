@@ -27,15 +27,17 @@ import states.TitleState;
 	public var hideHud:Bool = false;
 	public var noteOffset:Int = 0;
 	public var arrowRGB:Array<Array<FlxColor>> = [
-		[0xFFC24B99, 0xFF000000],
-		[0xFF00FFFF, 0xFF000000],
-		[0xFF12FA05, 0xFF000000],
-		[0xFFF9393F, 0xFF000000]];
+		[0xFFC24B99, 0xFF000000, 0xFF000000],
+		[0xFF00FFFF, 0xFF000000, 0xFF000000],
+		[0xFF12FA05, 0xFF000000, 0xFF000000],
+		[0xFFF9393F, 0xFF000000, 0xFF000000]
+	];
 	public var arrowRGBPixel:Array<Array<FlxColor>> = [
-		[0xFFE276FF, 0xFF000000],
-		[0xFF3DCAFF, 0xFF000000],
-		[0xFF71E300, 0xFF000000],
-		[0xFFFF884E, 0xFF000000]];
+		[0xFFE276FF, 0xFF000000, 0xFF000000],
+		[0xFF3DCAFF, 0xFF000000, 0xFF000000],
+		[0xFF71E300, 0xFF000000, 0xFF000000],
+		[0xFFFF884E, 0xFF000000, 0xFF000000]
+	];
 
 	public var ghostTapping:Bool = true;
 	public var timeBarType:String = 'Time Left';

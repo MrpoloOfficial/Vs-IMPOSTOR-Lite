@@ -45,8 +45,17 @@ class HealthIcon extends FlxSprite
 				isAnimatedIcon = false;
 				var graphic = Paths.image(name, allowGPU);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 2), Math.floor(graphic.height));
-				iconOffsets[0] = (width - 150) / 2;
-				iconOffsets[1] = (height - 150) / 2;
+
+				var addMoreOffset:FlxPoint = FlxPoint.get();
+				if(char.contains('red')) 
+					addMoreOffset.set(0, -15);
+				else if(char.contains('dave')) 
+					addMoreOffset.set(-25, 0);
+				else if(char.contains('idk')) 
+					addMoreOffset.set(0, 25);
+
+				iconOffsets[0] = ((width - 150) / 2) - addMoreOffset.x;
+				iconOffsets[1] = ((height - 150) / 2) - addMoreOffset.y;
 				updateHitbox();
 	
 				animation.add(char, [0, 1], 0, false, isPlayer);

@@ -477,7 +477,7 @@ class NotesSubState extends MusicBeatSubstate
 		{
 			if(FlxG.keys.pressed.SHIFT || FlxG.gamepads.anyJustPressed(LEFT_SHOULDER))
 			{
-				for (i in 0...3)
+				for (i in 0...2)
 				{
 					var strumRGB:RGBShaderReference = myNotes.members[curSelectedNote].rgbShader;
 					var color:FlxColor = !onPixel ? ClientPrefs.defaultData.arrowRGB[curSelectedNote][i] :
@@ -486,10 +486,10 @@ class NotesSubState extends MusicBeatSubstate
 					{
 						case 0:
 							getShader().r = strumRGB.r = color;
-						// case 1:
-						// 	getShader().g = strumRGB.g = color;
 						case 1:
-							getShader().b = strumRGB.b = color;
+						 	getShader().b = strumRGB.b = color;
+						case 2:
+							getShader().g = strumRGB.g = color;
 					}
 					dataArray[curSelectedNote][i] = color;
 				}
@@ -704,10 +704,10 @@ class NotesSubState extends MusicBeatSubstate
 		{
 			case 0:
 				getShader().r = strumRGB.r = color;
-			// case 1:
-			// 	getShader().g = strumRGB.g = color;
 			case 1:
-				getShader().b = strumRGB.b = color;
+			 	getShader().b = strumRGB.b = color;
+			case 2:
+			 	getShader().g = strumRGB.g = color;
 		}
 	}
 

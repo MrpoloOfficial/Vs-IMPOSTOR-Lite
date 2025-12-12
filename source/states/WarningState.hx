@@ -106,6 +106,7 @@ class WarningState extends MusicBeatState
             	FlxTransitionableState.skipNextTransOut = true;
             	FlxTransitionableState.skipNextTransIn = true;
 				leftState = true;
+				FlxG.mouse.visible = false;
 				ClientPrefs.saveSettings();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				FlxFlicker.flicker(disclaimerTxtEnter, 1.4, 0.1, false, true, function(_) {

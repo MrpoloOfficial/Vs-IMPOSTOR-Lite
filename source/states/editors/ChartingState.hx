@@ -2718,7 +2718,7 @@ class ChartingState extends MusicBeatState
 		nextRenderedSustains.forEachAlive(function(spr:FlxSprite) spr.destroy());
 		nextRenderedSustains.clear();
 
-		if (_song.notes[curSec].changeBPM && _song.notes[curSec].bpm > 0)
+		if (_song?.notes[curSec]?.changeBPM && _song?.notes[curSec]?.bpm > 0)
 		{
 			Conductor.bpm = _song.notes[curSec].bpm;
 			//trace('BPM of this section:');

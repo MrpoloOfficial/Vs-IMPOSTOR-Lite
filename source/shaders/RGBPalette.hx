@@ -65,7 +65,7 @@ class RGBShaderReference
 		@:bypassAccessor
 		{
 			r = parent.r;
-			g = parent.g;
+			g = parent.b; // parent.g
 			b = parent.b;
 			mult = parent.mult;
 		}

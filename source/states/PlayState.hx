@@ -502,7 +502,7 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.timeBarType == 'Song Name')
 		{
 			timeTxt.size = 24;
-			timeTxt.y += 3;
+			timeTxt.y -= 2;
 		}
 
 		var splash:NoteSplash = new NoteSplash(100, 100);
@@ -528,11 +528,9 @@ class PlayState extends MusicBeatState
 		add(camFollow);
 
 		moveCameraSection();
-
-		// FlxG.camera.follow(camFollow, LOCKON, 0);
 		FlxG.camera.smoothFollow(camFollow, false);
 		FlxG.camera.zoom = defaultCamZoom;
-		// FlxG.camera.snapToTarget();
+		FlxG.camera.followLerp = 2.4 * cameraSpeed * playbackRate;
 
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
@@ -1933,8 +1931,7 @@ class PlayState extends MusicBeatState
 				opponentVocals.stop();
 				FlxG.sound.music.stop();
 
-				camHUD.visible = false;
-				camOther.visible = false;
+				for(cam in [camHUD, camOther, camCountdown, camDialogue]) cam.visible = false;
 				persistentUpdate = false;
 				//persistentDraw = false;
 				FlxTimer.globalManager.clear();
@@ -2067,6 +2064,7 @@ class PlayState extends MusicBeatState
 						camFollow.x = flValue1;
 						camFollow.y = flValue2;
 					}
+					correctFollow();
 				}
 
 			case 'Alt Idle Animation':
@@ -2251,7 +2249,7 @@ class PlayState extends MusicBeatState
 
 		moveCamera(isDad);
 
-		FlxG.camera.smoothFollow(camFollow, true, 1.3 * cameraSpeed * playbackRate);
+		correctFollow();
 
 		callOnScripts('onMoveCamera', [isDad ? 'dad' : 'boyfriend']);
 	}
@@ -2270,6 +2268,14 @@ class PlayState extends MusicBeatState
 			camFollow.x -= boyfriend.cameraPosition[0] - boyfriendCameraOffset[0];
 			camFollow.y += boyfriend.cameraPosition[1] + boyfriendCameraOffset[1];
 		}
+	}
+
+	public function correctFollow()
+	{
+		var duration = 1.3 / (cameraSpeed * playbackRate);
+		duration = FlxMath.bound(duration, 0.03, 1.3);
+
+		FlxG.camera.smoothFollow(camFollow, true, duration);
 	}
 
 	public function finishSong(?ignoreNoteOffset:Bool = false):Void

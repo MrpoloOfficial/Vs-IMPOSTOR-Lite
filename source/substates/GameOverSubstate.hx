@@ -37,6 +37,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	var charY:Float = 0;
 	var bfLose:FlxSprite;
 	var bgDarkS:FlxSprite;
+	
 	override function create()
 	{
 		instance = this;
@@ -59,15 +60,51 @@ class GameOverSubstate extends MusicBeatSubstate
 		bfLose.cameras = [camGameover];
 		add(bfLose);
 
-		FlxG.sound.play(Paths.sound(deathSoundName));
-		PlayState.instance.boyfriend.playAnim('firstDeath');
-
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollow.setPosition(PlayState.instance.boyfriend.getGraphicMidpoint().x, PlayState.instance.boyfriend.getGraphicMidpoint().y);
-		FlxG.camera.focusOn(new FlxPoint(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2)));
+		// FlxG.camera.focusOn(new FlxPoint(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2)));
 		add(camFollow);
-		
-		FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.2}, 1, {ease: FlxEase.quadOut});
+
+		switch(PlayState.instance.boyfriend.curCharacter)
+		{
+			case 'bf-ghost':
+				PlayState.instance.boyfriend.visible = false;
+				PlayState.instance.gf.visible = false;
+
+				for(i in 0...2)
+				{
+					var arrowSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image('disconnectedArrow'));
+					arrowSpr.antialiasing = true;
+					arrowSpr.updateHitbox();
+					arrowSpr.setPosition(25, FlxG.height - arrowSpr.height - 30);
+					arrowSpr.alpha = 1;
+					add(arrowSpr);
+
+					var disTxt:FlxText = new FlxText(arrowSpr.x + arrowSpr.width + 5, arrowSpr.y, 0, ["Girlfriend", "Boyfriend"][i] + " left the game.");
+					disTxt.setFormat(Paths.font("vcr.ttf"), 20, 0xffff4747, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					disTxt.borderSize = 1.5;
+					add(disTxt);
+
+					for(spr in [arrowSpr, disTxt]) {
+						spr.cameras = [camGameover];
+
+						if(i == 0) spr.y -= 45;
+					}
+
+					FlxTween.tween(arrowSpr, {alpha: 0}, 1.6, {startDelay: 6});
+					FlxTween.tween(disTxt, {alpha: 0}, 1.6, {startDelay: 6});
+				}
+
+				FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.15}, 1, {ease: FlxEase.quadOut});
+				deathSoundName = 'leftGame';
+
+			default:
+				PlayState.instance.boyfriend.playAnim('firstDeath');
+				FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.2}, 1, {ease: FlxEase.quadOut});
+		}
+		moveItDown();
+
+		FlxG.sound.play(Paths.sound(deathSoundName));
 
 		PlayState.instance.setOnScripts('inGameOver', true);
 		PlayState.instance.callOnScripts('onGameOverStart', []);
@@ -82,8 +119,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		PlayState.instance.callOnScripts('onUpdate', [elapsed]);
 
-		if (controls.ACCEPT)
-		{
+		if (controls.ACCEPT) {
 			endBullshit();
 		}
 
@@ -105,23 +141,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.instance.callOnScripts('onGameOverConfirm', [false]);
 		}
 		
-		if (PlayState.instance.boyfriend.animation.curAnim != null)
-		{
-			if(PlayState.instance.boyfriend.animation.curAnim.name == 'firstDeath')
-			{
-				if(!moveCamera)
-				{
-					FlxG.camera.follow(camFollow, LOCKON, 0.6);
-					moveCamera = true;
-					moveItDown();
-				}
-			}
-		}
-		
-		if (FlxG.sound.music.playing)
-		{
+		if (FlxG.sound.music.playing) {
 			Conductor.songPosition = FlxG.sound.music.time;
 		}
+
 		PlayState.instance.callOnScripts('onUpdatePost', [elapsed]);
 	}
 
@@ -134,8 +157,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.music.stop();
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)
 			{
-				camGameover.fade(FlxColor.BLACK, 2, false, function()
-				{
+				camGameover.fade(FlxColor.BLACK, 2, false, function() {
 					FlxG.resetState();
 				});
 			});
@@ -145,6 +167,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	function moveItDown()
 	{
+		FlxG.camera.smoothFollow(camFollow, true, (7.5 * (60 / FlxG.updateFramerate)), FlxEase.expoOut);
 		new FlxTimer().start(1.4, function(tmr:FlxTimer)
 		{
 			FlxG.sound.play(Paths.sound('gameOver'));
