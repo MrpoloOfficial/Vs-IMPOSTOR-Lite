@@ -203,14 +203,14 @@ class Paths
 		var songKey:String = '${formatToSongPath(song)}/Voices';
 		if(postfix != null) songKey += '-' + postfix;
 		//trace('songKey test: $songKey');
-		var voices = returnSound('data', songKey, null);
+		var voices = returnSound('data/songs', songKey, null);
 		return voices;
 	}
 
 	inline static public function inst(song:String):Any
 	{
 		var songKey:String = '${formatToSongPath(song)}/Inst';
-		var inst = returnSound('data', songKey, null);
+		var inst = returnSound('data/songs', songKey, null);
 		return inst;
 	}
 

@@ -21,7 +21,6 @@ import openfl.utils.Assets as OpenFlAssets;
 import openfl.events.KeyboardEvent;
 import haxe.Json;
 
-import cutscenes.CutsceneHandler;
 import cutscenes.DialogueLiteBox;
 
 import states.StoryMenuState;

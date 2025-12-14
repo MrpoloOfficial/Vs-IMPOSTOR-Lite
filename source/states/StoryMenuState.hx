@@ -9,7 +9,6 @@ import flixel.graphics.FlxGraphic;
 import flixel.effects.FlxFlicker;
 
 import objects.MenuItem;
-import objects.MenuCharacter;
 
 import substates.GameplayChangersSubstate;
 import substates.ResetScoreSubState;
